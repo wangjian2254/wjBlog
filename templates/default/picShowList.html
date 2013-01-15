@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}<title>{{webinfo.webname}}相册-{{tag.tag}}</title>
+
+{% endblock %}
+{% block left %}
+{% include 'include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'include/menu.html' %}
+{% endblock %}
+{% block paper %}
+{%if isauth%}
+<tr>
+	<td >
+		<b><a href='/Admin'>网站后台管理</a> >> <a href='/picshowList/12/0.html'>相册管理 </a >{%if tag%} >> <font class='redfont'>{{tag.tag}}</font>{%endif%}</b>
+	</td>
+</tr>
+{%else%}
+<tr>
+	<td >
+		<a href='/' title='{{webinfo.webname}}'>首页</a> >> <a href='/picshowList/12/0.html'>返回相册</a>
+	</td>
+</tr>
+{%endif%}
+{%if tag%}
+<tr>
+	<td >
+		选择相册：{%for t in pictags%}<a href="/picshowList/12/0.html?tag={{t.key.id}}" style="margin-left:10px;">{%ifequal t.tag tag.tag%}<b style="font-size: 15px;">{%endifequal%}{{t.tag}}{%ifequal t.tag tag.tag%}</b>{%endifequal%}</a> {%endfor%}
+	</td>
+</tr>
+ {%if isauth%}
+<form action="/Admin/picshowAdd" method="post"  enctype="multipart/form-data">
+<tr>
+	<td  style="padding-left:30px;">
+
+		照片标题：<input type="text" name="title" style="width:200px;">
+	</td>
+</tr>
+<tr>
+	<td  style="padding-left:30px;">
+		选择照片：<input type="file" name="pic" style="width:240px;"><input type="hidden" name="tagid" value="{{tag.key.id}}">
+	</td>
+</tr>
+<tr>
+	<td  style="padding-left:70px;">
+
+		<input type="submit" value="上传照片" style="margin-left: 10px;">
+	</td>
+</tr>
+</form>
+{%endif%}
+<tr style="height:10px;">
+	<td  style="padding-left:30px;">
+
+	</td>
+</tr>
+<tr>
+	<td colspan="3">
+        {% for pic in piclist %}
+        <div style="width:180px;height:150px;text-align:center;float:left;"><a href="/pic/{{pic.key}}/{{tag.key.id}}.html"><img src="/pics/s/{{pic.key}}/0/100" height="100px" border="0" alt="pic.title" ></a><br/>
+            {%if isauth%}
+            <form action="/Admin/picshowAdd" method="post">
+              <input name="title" value="{%if pic.title%}{{pic.title}}{%endif%}" style="width:100px;"><br/><input type="submit" value="修改照片名称"><input type="hidden" name="id" value="{{pic.key.id}}">
+               <a href='/Admin/picshowDel?picid={{pic.key.id}}' style="margin-top: 3px;margin-left: 3px;">删除照片</a>
+            </form>
+            {%else%}<label>{{forloop.counter}}.{%if pic.title%}<a href="/pic/{{pic.key}}/{{tag.key.id}}.html">{{pic.title}}</a>{%endif%}</label>
+            {%endif%}
+        </div>
+        {% endfor %}
+	</td>
+</tr>
+{%else%}
+{%if isauth%}
+<tr>
+	<td  style="padding-left:30px;">
+        <form action="/Admin/pictagsave" method="post">
+		新相册名称：<input type="text" name="tag" style="width:200px;"><input type="submit" value="添加新相册"></form>
+	</td>
+</tr>
+<tr style="height:10px;">
+	<td  style="padding-left:30px;">
+	</td>
+</tr>
+{%endif%}
+<tr>
+	<td colspan="3">
+        {% for pic in piclist %}
+        <div style="width:180px;height:150px;text-align:center;float:left;text-align:center;"><a href="/picshowList/12/0.html?tag={{pic.tagid}}">{%if pic.key%}<img src="/pics/s/{{pic.key}}/0/100" height="100px" border="0" >{%else%}<img src="/static/img/up.png" height="100px" border="0" >{%endif%}</a><br/>
+            {%if isauth%}
+            <form action="/Admin/pictagsave" method="post"><input name="tag" value="{{pic.tagname}}" style="width:100px;"><br/><input type="submit" value="修改相册名"><input type="hidden" name="id" value="{{pic.tagid}}"></form>
+            {%else%}
+            {{pic.tagname}}
+            {%endif%}
+        </div>
+        {% endfor %}
+	</td>
+</tr>
+{%endif%}
+<tr>
+    <td align="center"  >
+    	{% ifnotequal ppage 0%}<a href='/picshowList/{{ limt }}/0.html?tag={{tag.key.id}}'>第一页</a>{%endifnotequal%}　　{% ifnotequal ppage 0%}<a href='/picshowList/{{ limt }}/{{ppage}}.html?tag={{tag.key.id}}'>上一页</a>{%endifnotequal%}　　<a href='/picshowList/{{ limt }}/{{npage}}.html?tag={{tag.key.id}}'>下一页</a>
+    </td>
+</tr>
+{% endblock %}

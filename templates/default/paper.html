@@ -1,0 +1,116 @@
+{% extends "default/base.html" %}
+{% load blog_filter %}
+{% block script %}
+    <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript">
+        <!--
+        //        window.UEDITOR_HOME_URL = location.pathname.substr(0, location.pathname.lastIndexOf('/')) + '/';
+        window.UEDITOR_HOME_URL = '/static/ueditor/';
+        var paperdetailid='{{ title.paper.id }}';
+        //-->
+    </script>
+    <script type="text/javascript" src="/static/ueditor/editor.js"></script>
+    <script type="text/javascript" src="/static/ueditor/editor_comment_config.js"></script>
+
+    <link rel="stylesheet" href="/static/ueditor/themes/default/ueditor.css" />
+    <!-- Add jQuery library -->
+
+
+       <script type="text/javascript" src="/static/fancy/lib/jquery-1.7.2.min.js"></script>
+       	<!-- Add mousewheel plugin (this is optional) -->
+
+       	<script type="text/javascript" src="/static/fancy/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+       	<!-- Add fancyBox main JS and CSS files -->
+       	<script type="text/javascript" src="/static/fancy/source/jquery.fancybox.js?v=2.1.0"></script>
+       	<link rel="stylesheet" type="text/css" href="/static/fancy/source/jquery.fancybox.css?v=2.1.0" media="screen" />
+
+       	<!-- Add Button helper (this is optional) -->
+       	<link rel="stylesheet" type="text/css" href="/static/fancy/source/helpers/jquery.fancybox-buttons.css?v=1.0.3" />
+       	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-buttons.js?v=1.0.3"></script>
+
+       	<!-- Add Thumbnail helper (this is optional) -->
+       	<link rel="stylesheet" type="text/css" href="/static/fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" />
+       	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
+
+       	<!-- Add Media helper (this is optional) -->
+       	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-media.js?v=1.0.3"></script>
+           <script type="text/javascript">
+           var hdpjson={{ hdpjson|safe }};
+           </script>
+       	<script type="text/javascript" src="/static/js/paperEffect.js">
+       	</script>
+{% endblock %}
+{% block title %}<title>{{ title.title }}-{{webinfo.webname}}</title>
+<meta name="Keywords" content="{{ title.keyword }}" />
+<meta name="Description" content="{{ title.desc }}" />
+{% endblock %}
+{% block left %}
+{% include 'default/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+    <td align="left" >
+    	<a href='/' title='{{webinfo.webname}}'>首页</a> >> <a href='/blog/{{ title.menu.id }}.html'>返回{{ title.menu.name }}列表</a>
+    </td>
+</tr>
+<tr height='30px'>
+    <td align="center" >
+    	<b style='font-size:14px;'>{{ title.title }}</b>
+    </td>
+</tr>
+<tr >
+	<td align="center" >作者：{{ title.author.get_full_name }} | 发布时间：{{ title.releaseDate|date:"Y年m月d日 H时i分"}}
+	</td>
+</tr>
+<tr>
+    <td align="left" >
+
+    	{{ title.paper.content|paperImageEffect|safe }}
+    </td>
+</tr>
+<tr >
+	<td height='1px'>
+	</td>
+</tr>
+<tr >
+	<td >关键字：{% for k in title.getKeywordList %}<a href="/blog/keywords?keyword={{ k.id }}">{{ k.name }}</a>&nbsp;&nbsp;&nbsp;{% endfor %}
+	</td>
+</tr>
+<tr>
+    <td align="right" >
+    	<div style="float:left;margin-left:30px;">目前有<font class='redfont' id="showNumFont">{{ title.showNum }}</font>人看了这篇文章，有<font class='redfont' id="replayNumFont">{{ title.replyNum }}</font>人发表了自己的观点!</div>
+    </td>
+</tr>
+<tr height='5px;'>
+	<td>
+	</td>
+</tr>
+<tr >
+	<td>
+        {% include 'default/include/commentlist.html' %}
+	</td>
+</tr>
+<tr >
+	<td>
+        {% include 'default/include/comment.html' %}
+	</td>
+</tr>
+{% endblock %}
+{% block ucedit %}
+    <script type="text/javascript">
+        var editor = new UE.ui.Editor();
+        editor.render('editor');
+        //editor.setContent("ssd");
+
+
+    function setpaperid(){
+        document.getElementById('paperid').value="{{ title.paper.id }}";
+        getReplay();
+    }
+    setpaperid();
+    </script>
+{% endblock %}

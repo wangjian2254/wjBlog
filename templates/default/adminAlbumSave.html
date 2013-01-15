@@ -1,0 +1,38 @@
+{% extends "default/base.html" %}
+{% block left %}
+{% include 'default/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+	<td colspan='3'>
+		<b><a href='/blog/Admin'>网站后台管理</a> >> 管理相册</b>
+	</td>
+</tr>
+<tr>
+
+	<td colspan="3" >
+        <form action="/blog/Admin/manageAlbum/save" method="POST">{% csrf_token %}
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>相册名称：</td>
+                    <td><input type="text" name="albumName" value="{{ album.title }}" style="width: 200px;"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;<input type="submit" value="保存">{% if album %}&nbsp;&nbsp;&nbsp;<input type="button" value="上传图片" onclick="window.location.href='/blog/Admin/manageAlbum/upload?albumId={{ album.id }}'"><input type="hidden" name="albumId" value="{{ album.id }}">{% endif %}</td>
+                </tr>
+            </table>
+        </form>
+
+	</td>
+
+</tr>
+<tr>
+        <td >
+        </td>
+        <td colspan="2" >{% include 'default/include/msg.html' %}
+        </td>
+    </tr>
+{% endblock %}

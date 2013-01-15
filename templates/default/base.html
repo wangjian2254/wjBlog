@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+{% block title %}<title>{{webinfo.webname}}</title>{% endblock %}
+{% block script %}{% endblock %}
+<script type="text/javascript" src="/static/js/siteShow.js"/>
+<script type="text/javascript">
+//  var _gaq = _gaq || [];
+//  _gaq.push(['_setAccount', 'UA-20025612-3']);
+//  _gaq.push(['_trackPageview']);
+//  (function() {
+//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//  })();
+</script>
+
+</head>
+<body style='background-image:url(/static/img/back.jpg)'><center>
+	<div style='width:996px;background-image:url(/static/img/index_04.jpg);'>
+	<div style='background-image:url(/static/img/index_01.jpg);width:996px;height:186px;text-align:left;'>
+		<div style="margin-left:80px;padding-top:25px;"><a href='/' title='{{webinfo.webname}}'><b style='font-size:30px;font-family:隶书;color:#ffffff;'>{{webinfo.webname}}</b></a></div>
+        <div style=""><div style="margin-left:50px;padding-top:15px;float:left;"><a href="/rss.xml" target="_blank" title="订阅我的博客"><span style="font-size:15px;color:#ffffff;vertical-align:top;">订阅我的博客</span></a> </div><div style="float:left;"><a href="/rss.xml" target="_blank" title="订阅我的博客"><img src="/static/img/default/rssadd.png" border="0" alt="订阅RSS" width="50"></a></div></div>
+	    <div style="margin-left:50px;padding-top:5px;width:100%;float:left;"><form action="/blog/emailSubscribe.html" method="post" style="color:#ffffff;">Email订阅：<input type="text" name="email" style="width:120px;" ><input type="submit" value="订阅">&nbsp;&nbsp;(现有 {{left.subscribeNum}} 人订阅)</form></div>
+    </div>
+	<div style='width:996px;height:auto;'>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style='background-image:url(/static/img/index_02.jpg);background-repeat:no-repeat;'>
+    <tr>
+    	<td width='50px'>
+		 	</td>
+        <td width="234px" valign="top" height='100%' >
+ 		<table width="100%"  border="0" cellspacing="0" cellpadding="0" style="text-align:left;">
+		 {% block left %}
+
+		 {% endblock %}
+	 	</table>
+        </td>
+		<td width="20px" ></td>
+        <td valign='top'>
+			<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+		   			 <tr>
+		   			 	<td height='25px' align='left'>
+		   			 		<b>{% block menu %}| {% endblock %}</b>
+		   			 	</td>
+		   			 </tr>
+					 <tr>
+		   			 	<td height='5px'>
+		   			 	</td>
+		   			 </tr>
+		   			 <tr>
+		   			 	<td  style="background-image:url(/static/img/index1.gif);background-repeat:repeat-y;" valign='top' align='left'>
+		   			 		
+		   			 		<table width="590" border="0" cellspacing="0" cellpadding="0" style='margin-left:20px;'>
+							    {% block paper %}
+
+							    
+								{% endblock %}
+							</table>
+
+							
+		   			 	</td>
+		   			 </tr>
+			</table>
+        </td>
+    </tr>
+	 <tr height='164px'>
+   			 	<td colspan='2' style="height:164px;background-image:url(/static/img/back.jpg);background-repeat:repeat;" valign="top" align="center">
+   			 		<img src="/static/img/index1_06.jpg" alt="" border="0">
+   			 	</td>
+				<td width="20px" ></td>
+   			 	<td  style="background-image:url(/static/img/index1.gif);background-repeat:repeat-y;text-align:left;" valign='top' >
+   			 		<table width="590" border="0" cellspacing="0" cellpadding="0" style='margin-left:20px;'>
+					    <tr>
+					        <td align='left'height='20px'>
+					        	<b>{{picshow.tag}}</b>
+					        </td>
+					    </tr>
+					    <tr>
+					        <td  height='180px'>
+					        	<marquee behavior="scroll" DIRECTION=left scrollamount="3"  width='580' height='170' id="picshow" onMouseOut="this.start()" onMouseOver="this.stop()"   ></marquee>
+					        </td>
+					    </tr>
+					    
+					</table>
+                        <div id="pjs" >
+                            <div id="jjjj"></div>
+                        </div>
+
+                    <script  type="text/javascript">
+//                        var gab = document.createElement('script'); gab.type = 'text/javascript'; gab.async = true;
+//                        gab.src="/blog/picshow?d="+new Date().toString();
+//                        var jj=document.getElementById('jjjj')
+//                        document.getElementById("pjs").insertBefore(gab,jj);
+                    </script>
+   			 	</td>
+   			 </tr>
+</table>
+</div>
+	
+	<div style='background-image:url(/static/img/index_06.jpg);width:996px;height:186px;'>
+		<div style='padding-top:170px;'>技术支持:鲤鱼科技 </div>
+	</div>
+</div>
+
+</center>
+
+</body>
+{% block ucedit %}
+{% endblock %}
+</html>

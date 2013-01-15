@@ -1,0 +1,58 @@
+{% extends "default/base.html" %}
+{% block left %}
+{% include 'default/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+	<td colspan='3'>
+		<b><a href='/blog/Admin'>网站后台管理</a> >> 个人简介管理</b>
+	</td>
+</tr>
+
+
+<form name='add' action='/blog/Admin/AdminInfo/save' method='post'  enctype="multipart/form-data">
+<tr>
+	<td >个人头像：
+	</td>
+	
+</tr>
+<tr>
+	<td ><input type="file" name="pic" style='width:500px;'> (格式为:gif、jpg、jpeg、png ; 大小限制为:200KB)
+	</td>
+
+</tr>
+<tr>
+	<td >{%if adminInfo.img%}<img src="{{adminInfo.img}}"  width="150" height="200" border="0">{%endif%}
+	</td>
+
+</tr>
+<tr>
+	<td >个人简介：(200字内)
+	</td>
+
+</tr>
+<tr>
+	<td ><textarea name='content' style='width:500px;height:200px;'>{{adminInfo.content}}</textarea>
+	</td>
+	
+</tr>
+<tr>
+	
+	<td height='5'>
+	</td>
+</tr>
+<tr>
+	
+	<td ><input type='submit' value='保存'>{% csrf_token %}
+	</td>
+</tr>
+<tr>
+
+	<td >{% include 'default/include/msg.html' %}
+	</td>
+</tr>
+</form>
+{% endblock %}

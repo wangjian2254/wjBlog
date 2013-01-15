@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">{% for url in urls %}<url>
+    <loc>{{ url.url }}</loc>
+    <lastmod>{{ url.time|date:"Y-m-d" }}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>{{ url.priority }}</priority>
+  </url>{% endfor %}</urlset>

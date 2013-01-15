@@ -1,0 +1,64 @@
+{% extends "default/base.html" %}
+{% block title %}<title>{{webinfo.webname}}</title>
+<meta name="Keywords" content="{{webinfo.keyword}}" />
+<meta name="Description" content="{{webinfo.desc}}" />
+{% endblock %}
+{% block left %}
+{% include 'default/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+{% for paper in paperlist %}
+<tr>
+<td align="left" style='padding-left:20px;'>
+	<b><a href='{{ paper.url }}'>{{ paper.getTypeStr }} {{paper.title}}</a></b>
+</td>
+</tr>
+    {% ifequal paper.type 'paper' %}
+        <tr>
+        <td align="left">
+            <span class="descText">{{paper.desc}}</span>
+        </td>
+        </tr>
+    {% endifequal %}
+    {% ifequal paper.type 'image' %}
+        <tr>
+        <td align="left" >
+            <span class="descText">{{paper.desc}}</span>
+        </td>
+        </tr>
+        <tr>
+        <td align="left" >
+            {% for img in paper.imglist %}
+            <a href='{{ paper.url }}'><img src="{{ img.imgsmall }}" border="0" alt="{{ paper.title }}"/></a>
+            {% endfor %}
+        </td>
+        </tr>
+    {% endifequal %}
+    {% ifequal paper.type 'album' %}
+        <tr>
+        <td align="left" >
+            {% for img in paper.imglist %}
+            <a href='{{ paper.url }}'><img src="{{ img.imgsmall }}" border="0" alt="{{ paper.title }}"/></a>
+            {% endfor %}
+        </td>
+        </tr>
+    {% endifequal %}
+
+<tr >
+<td height='1px'>
+</td>
+</tr>
+<tr>
+<td align="right" >
+	<div style="float:left;margin-left:30px;">目前有<font class='redfont'>{{paper.showNum}}</font>人看了这篇文章，有<font class='redfont'>{{ paper.replyNum }}</font>人发表了自己的观点!</div><a href='{{ paper.url }}' >查看全文</a>
+</td>
+</tr>
+<tr height='5px;'>
+<td>
+</td>
+</tr>
+{% endfor %}
+{% endblock %}

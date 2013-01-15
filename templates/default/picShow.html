@@ -1,0 +1,51 @@
+{% extends "default/base.html" %}
+{% block left %}
+{% include 'default/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+
+	<td ><a href='/' title='{{webinfo.webname}}'>首页</a> >> <a href='/blog/picshowList/12/0.html?tag={{tag.key.id}}'>返回{{tag.tag}}相册</a>
+	</td>
+</tr>
+
+<tr >
+	<td align="center">
+        <img src="/pics/show/{{image.key}}" alt="image.title" border="0">
+        <br/> <br/>
+        <label>{{image.title}}</label>
+        <br/> <br/>
+        {%if pimg%}
+        <a href="/pic/{{pimg}}/{{tag.key.id}}.html"  style="margin-right: 20px;">上一张</a>
+        {%endif%}
+        {%if nimg%}
+        <a href="/pic/{{nimg}}/{{tag.key.id}}.html">下一张</a>
+        {%endif%}
+	</td>
+</tr>
+<tr >
+	<td align="left">
+        {% for i in ids%}
+        {%ifequal i id%}
+        <a href="/pic/{{i}}/{{tag.key.id}}.html"><img src="/pics/s/{{i}}/100/0" style="margin-right: 10px;border-color: orange;" border="3"></a>
+        {%else%}
+        <a href="/pic/{{i}}/{{tag.key.id}}.html"><img src="/pics/s/{{i}}/100/0" style="margin-right: 10px;" border="0"></a>
+        {%endifequal%}
+        {%endfor%}
+	</td>
+</tr>
+<tr >
+	<td>
+        {% include 'include/commentlist.html' %}
+	</td>
+</tr>
+<tr >
+	<td>
+        {% include 'include/comment.html' %}
+	</td>
+</tr>
+
+{% endblock %}
