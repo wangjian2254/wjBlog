@@ -9,34 +9,36 @@
         var paperdetailid='{{ title.paper.id }}';
         //-->
     </script>
-    <script type="text/javascript" src="/static/ueditor/editor.js"></script>
+    <script type="text/javascript" src="/static/ueditor/editor_all_min.js"></script>
     <script type="text/javascript" src="/static/ueditor/editor_comment_config.js"></script>
+    <script type="text/javascript" src="/static/ueditor/uparse.js"></script>
+    <script>setTimeout(function(){
+        uParse('#news_content',{
+            'highlightJsUrl':'/static/ueditor/third-party/SyntaxHighlighter/shCore.js',
+            'highlightCssUrl':'/static/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
+        })},300)
+    </script>
 
     <link rel="stylesheet" href="/static/ueditor/themes/default/ueditor.css" />
     <!-- Add jQuery library -->
-
-
        <script type="text/javascript" src="/static/fancy/lib/jquery-1.7.2.min.js"></script>
        	<!-- Add mousewheel plugin (this is optional) -->
-
        	<script type="text/javascript" src="/static/fancy/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-
        	<!-- Add fancyBox main JS and CSS files -->
        	<script type="text/javascript" src="/static/fancy/source/jquery.fancybox.js?v=2.1.0"></script>
        	<link rel="stylesheet" type="text/css" href="/static/fancy/source/jquery.fancybox.css?v=2.1.0" media="screen" />
-
        	<!-- Add Button helper (this is optional) -->
        	<link rel="stylesheet" type="text/css" href="/static/fancy/source/helpers/jquery.fancybox-buttons.css?v=1.0.3" />
        	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-buttons.js?v=1.0.3"></script>
-
        	<!-- Add Thumbnail helper (this is optional) -->
        	<link rel="stylesheet" type="text/css" href="/static/fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" />
        	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
-
        	<!-- Add Media helper (this is optional) -->
        	<script type="text/javascript" src="/static/fancy/source/helpers/jquery.fancybox-media.js?v=1.0.3"></script>
            <script type="text/javascript">
+               {% if hdpjson %}
            var hdpjson={{ hdpjson|safe }};
+               {% endif %}
            </script>
        	<script type="text/javascript" src="/static/js/paperEffect.js">
        	</script>
@@ -67,9 +69,10 @@
 	</td>
 </tr>
 <tr>
-    <td align="left" >
-
-    	{{ title.paper.content|paperImageEffect|safe }}
+    <td align="right" class="newsContent"  >
+    	<table  width="100%" cellpadding="0" cellspacing="0" border="0" ><tr><td id="news_content" >
+    {{ title.paper.content|paperImageEffect|safe }}
+    </td></tr></table>
     </td>
 </tr>
 <tr >
@@ -102,11 +105,13 @@
 {% endblock %}
 {% block ucedit %}
     <script type="text/javascript">
-        var editor = new UE.ui.Editor();
-        editor.render('editor');
+//        var editor = new UE.ui.Editor();
+//        editor.render('editor');
         //editor.setContent("ssd");
-
-
+setTimeout(function(){
+    var editor = new UE.ui.Editor();
+            editor.render('editor');
+       },800);
     function setpaperid(){
         document.getElementById('paperid').value="{{ title.paper.id }}";
         getReplay();

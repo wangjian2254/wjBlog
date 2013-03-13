@@ -12,8 +12,8 @@
 
         //-->
     </script>
-    <script type="text/javascript" src="/static/ueditor/editor.js"></script>
-        <script type="text/javascript" src="/static/ueditor/editor_comment_config.js"></script>
+    <script type="text/javascript" src="/static/ueditor/editor_comment_config.js"></script>
+    <script type="text/javascript" src="/static/ueditor/editor_all_min.js"></script>
 
         <link rel="stylesheet" href="/static/ueditor/themes/default/ueditor.css" />
 
@@ -288,8 +288,10 @@
 {% endblock %}
 {% block ucedit %}
     <script type="text/javascript">
+        setTimeout(function(){
         var editor = new UE.ui.Editor();
-        editor.render('editor');
+                editor.render('editor');
+           },800);
         //editor.setContent("ssd");
 
 

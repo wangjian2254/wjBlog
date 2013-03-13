@@ -1,11 +1,11 @@
-    <%@ page language="java" pageEncoding="UTF-8"%>
+    <%@ page language="java" pageEncoding="utf-8"%>
     <%@ page import="java.io.*"%>
     <%@ page import="java.net.*"%>
     <%@ page import="java.util.*"%>
     <%@ page import="ueditor.Uploader" %>
     <%
-    	request.setCharacterEncoding("UTF-8");
-    	response.setCharacterEncoding("UTF-8");
+    	request.setCharacterEncoding("utf-8");
+    	response.setCharacterEncoding("utf-8");
     	String url = request.getParameter("upfile");
     	String state = "远程图片抓取成功！";
     	

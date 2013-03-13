@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="javax.servlet.ServletContext"%>

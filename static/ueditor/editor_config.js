@@ -113,8 +113,8 @@
 
        ,focus:true //初始化时，是否让编辑器获得焦点true或false
 
-
-      ,minFrameHeight:"420"  // 最小高度,默认320
+       ,initialFrameWidth:"550"  //初始宽度
+      ,minFrameHeight:"620"  // 最小高度,默认320
 
 
        ,autoClearEmptyNode : true    //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）

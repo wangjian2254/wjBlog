@@ -71,7 +71,7 @@ public class Uploader {
 		try {
 			ServletFileUpload sfu = new ServletFileUpload(dff);
 			sfu.setSizeMax(this.maxSize * 1024);
-			sfu.setHeaderEncoding("UTF-8");
+			sfu.setHeaderEncoding("utf-8");
 			FileItemIterator fii = sfu.getItemIterator(this.request);
 			while (fii.hasNext()) {
 				FileItemStream fis = fii.next();
