@@ -21,7 +21,7 @@
      */
     var URL;
     var ServerURL='/ueditor/';
-    var ServerImgURL='/static/upload/1/';
+    var ServerImgURL='/static/upload/';
     /**
      * 此处配置写法适用于UEditor小组成员开发使用，外部部署用户请按照上述说明方式配置即可，建议保留下面两行，以兼容可在具体每个页面配置window.UEDITOR_HOME_URL的功能。
      */

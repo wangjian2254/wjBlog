@@ -21,7 +21,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from wjBlog.blog.models import WebSiteInfo
 from wjBlog.ueditor.models import UeditorFile
-from util.tool import domain_site
+from wjBlog.util.tool import domain_site
 from wjBlog.settings import SITE_ID,UPLOAD_ROOT
 
 fieldname='upfile'
@@ -47,7 +47,7 @@ def getSaveName(dir,filename):
     """
     判断是否存在文件名，如果存在，产生新的文件名
     """
-    filename=str(uuid.uuid4())+filename.split('.')[1]
+    filename=str(uuid.uuid4())+'.'+filename.split('.')[1]
     while os.path.isfile(dir+filename):
         file_name=filename.split('.')
         filename=file_name[0]+str(random.randint(0,9))+'.'+file_name[1]
@@ -93,7 +93,7 @@ def imageUp(funname,site,request):
         else:
             result['state']=errorInfo['SUCCESS']
             result['title']=ufile.title
-            result['url']=newfilename
+            result['url']=str(site.get('id'))+'/'+newfilename
     return HttpResponse(json.dumps(result))
 
 @login_required
@@ -131,7 +131,7 @@ def fileUp(funname,site,request):
 
         else:
             result['state']=errorInfo['SUCCESS']
-            result['url']=newfilename
+            result['url']=str(site.get('id'))+'/'+newfilename
     return HttpResponse(json.dumps(result))
 
 
@@ -178,7 +178,7 @@ def getRemoteImage(funname,site,request):
                 continue
             else:
             #                result['state']=errorInfo['SUCCESS']
-                outSrc.insert(i,newfilename)
+                outSrc.insert(i,str(site.get('id'))+'/'+newfilename)
             pass
         else:
             result['state']=u'图片地址错误'
@@ -195,7 +195,7 @@ def getRemoteImage(funname,site,request):
 def imageManager(funname,site,request):
     str=''
 #    uri='http://'+request.META['HTTP_HOST']+UPLOAD_URL
-    uri=''
+    uri=str(site.get('id'))+'/'
     for ufile in UeditorFile.objects.filter(site=SITE_ID):
         str+=uri+ufile.realfilename+ue_separate_ue
     if str:
@@ -206,12 +206,12 @@ def imageManager(funname,site,request):
 @csrf_exempt
 @domain_site
 def getMovie(funname,site,request):
-    searchkey=request.POST.get('searchKey','')
+    searchkey=request.POST.get('searchKey','').encode('utf-8')
     videotype=request.POST.get('videoType','')
     content=''
     try:
 #        searchkey=urllib.quote(searchkey)
-        url="http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&kw="+ searchkey+"&pageNo=1&pageSize=20&channelId="+videotype+"&inDays=7&media=v&sort=s"
+        url="http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&"+ urllib.urlencode({'kw':searchkey})+"&pageNo=1&pageSize=20&channelId="+videotype+"&inDays=7&media=v&sort=s"
         videofile=urllib.urlopen(url)
         if 200==videofile.getcode():
             content+=videofile.read()

@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.contrib.auth.views import  logout
-from util.tool import login_blog
+from wjBlog.util.tool import login_blog
 from wjBlog.blog.views import edit,index
 from wjBlog.util.imageCode import display
 import settings
