@@ -151,3 +151,10 @@ strong{
 #replaytext p{
     color: red;
 }
+table {
+table-layout: fixed;
+word-wrap:break-word;
+}
+div {
+word-wrap:break-word;
+}
