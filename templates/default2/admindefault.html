@@ -1,0 +1,145 @@
+{% extends "default2/base.html" %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+	<td >
+		<b><a href='/blog/Admin'>网站后台管理</a></b>
+	</td>
+</tr>
+<tr class="littletr">
+	<td>网站信息管理
+	</td>
+</tr>
+<tr>
+    <td><form action="/blog/Admin/webinfo" method="post">
+        <table width="90%" align="center">
+            <tr >
+                <td style='padding:0px 0px 0px 30px;' colspan="2">网站名称：
+                </td>
+            </tr>
+            <tr>
+                <td style='padding:0px 0px 0px 30px;'><input type="text" name="webname" value="{{webinfo.webname}}" style="width:300px"><td width="200px">(网站的名字例如:XX的博客)(10字内)	</td>
+                </td>
+            </tr>
+            <tr >
+                <td style='padding:0px 0px 0px 30px;' colspan="2">网站网址：
+                </td>
+            </tr>
+            <tr>
+                <td style='padding:0px 0px 0px 30px;'>http://{{webinfo.webdomain}}<td width="200px">(网站的网址例如:www.zhangqingli.com)(10字内)	</td>
+                </td>
+            </tr>
+            <tr >
+                <td style='padding:0px 0px 0px 30px;' colspan="2">网站内容领域：
+                </td>
+            </tr>
+            <tr>
+                <td style='padding:0px 0px 0px 30px;'><input type="text" name="keyword" value="{{webinfo.keyword}}" style="width:300px"><td>(网站的主要内容关键字例如:法律 官司 IT )(单词之间空格隔开)(30字内)</td>
+                </td>
+            </tr>
+            <tr >
+                <td style='padding:0px 0px 0px 30px;' colspan="2">网站简介：
+                </td>
+            </tr>
+            <tr>
+                <td style='padding:0px 0px 0px 30px;'><textarea type="text" name="desc" rows="5" style="width:300px">{{webinfo.desc}}</textarea><td>(网站的描述例如:XX的博客，致力于维护世界和平~)(500字内)</td>
+                </td>
+            </tr>
+            <tr >
+                <td style='padding:0px 0px 0px 40px;' colspan="2" ><input type="submit" value="保存网站信息">
+                    {% csrf_token %}
+                </td>
+            </tr>
+            <tr>
+
+                <td style='padding:0px 0px 0px 40px;' colspan="2">{% include 'default2/include/msg.html' %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+</tr>
+<tr class="littletr">
+	<td>个人简介管理：（修改）
+	</td>
+</tr>
+<tr>
+	<td style='padding:0px 0px 0px 30px;'><a href='/blog/Admin/AdminInfo'>进入个人简介管理</a>
+	</td>
+</tr>
+<tr class="littletr">
+	<td>博文分类管理：（添加、修改、删除）
+	</td>
+</tr>
+<tr>
+	<td style='padding:0px 0px 0px 30px;'><a href='/blog/Admin/manageMenu'>进入博文分类管理</a>
+	</td>
+</tr>
+<tr class="littletr">
+	<td>文章内容管理：（添加、修改、删除）
+	</td>
+</tr>
+<tr>
+	<td>
+<table width='100%' cellpadding=0 cellspacing=0 border=0>
+<tr >
+	<td style='padding:0px 0px 0px 30px;width:150px'>博文分类</td><td style='width:250px'> 添加 </td><td> 查看
+	</td>
+</tr>
+{% for menu in menulist %}
+<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+	<td style='padding:0px 0px 0px 30px;'>{{forloop.counter}}. <b>{{ menu.name }}</b></td><td > <a href='/blog/Admin/managePaper/save?menuid={{ menu.id }}' >添加新文章</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='/blog/Admin/managePaperImage/save?menuid={{ menu.id }}' >添加图集文章</a> </td><td> <a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}'>查看文章列表</a>
+	</td>
+</tr>
+{% endfor %}
+
+</table>
+	</td>
+</tr>
+
+
+<tr class="littletr">
+	<td >微博管理：（授权）
+	</td>
+</tr>
+<tr>
+	<td style='padding:0px 0px 0px 30px;' >尚未开通：<span style="color: #0000ff">{% if not weibo.sinaisright %}<a href="/blog/Admin/login?website=sina"  style="margin-left: 10px;">新浪微博</a>{% endif %}{% if not weibo.wyisright %}<a href="/blog/Admin/login?website=wy" style="margin-left: 10px;">网易微博</a>{% endif %}{% if not weibo.qqisright %}<a href="/blog/Admin/login?website=teng" style="margin-left: 10px;">QQ微博</a>{% endif %}</span>
+	</td>
+</tr>
+<tr>
+	<td style='padding:0px 0px 0px 30px;'>已经开通：<span style="color: #0000ff">{% if weibo.sinaisright %}新浪微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.wyisright %}网易微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.qqisright %}QQ微博{% endif %}</span>
+	</td>
+</tr>
+<tr class="littletr">
+	<td >相册管理
+	</td>
+</tr>
+<tr>
+	<td style='padding:0px 0px 0px 30px;' ><a href="/blog/picshowList/12/0.html">进入相册管理</a>
+	</td>
+</tr>
+
+<tr class="littletr">
+	<td>我的风采（图片展示）
+	</td>
+</tr>
+<tr>
+	<td  style='padding:0px 0px 0px 30px;' >
+        <form action="/blog/Admin/setPicShow" method="post">
+            <label>选择我的风采展示相册：</label><br/>
+                <select name="picshow">
+                    <option value="">不选择任何相册</option>
+                    {%for tag in picshowtaglist%}
+                    <option value="{{tag.key.id}}" {%ifequal picshowtag tag.key.id%} selected="selected" {%endifequal%} >{{tag.tag}}</option>
+                    {%endfor%}
+            </select>
+            <input type="submit" value="保存设置" />
+        </form>
+	</td>
+</tr>
+{% endblock %}

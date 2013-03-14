@@ -1,0 +1,109 @@
+<form action="/blog/commentAdd" method="post">
+    <a name="replay"></a>
+
+<table style="float: left;margin-left: 20px;" cellpadding="0" cellspacing="0" width="495px" >
+   
+    <tr>
+        <td colspan="2">
+            <div  id="isreplay" style="display:none;width:100%;float:left;background-color: #d2dcf8;padding: 5px;">对“<span id="replaytext" style="color:#ff0000;margin-left:10px;" ></span>” 回复。</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="100px" height="45px">
+            联系方式类型：
+        </td>
+        <td>
+            <input type="radio" name="type" value="email" {% if guest %}{% ifequal guest.type 'email' %}checked="checked"{% endifequal %}{% else %} checked="checked"{% endif %} />电子邮件&nbsp;&nbsp;&nbsp;<input type="radio" name="type" value="qq" {% ifequal guest.type 'qq' %}checked="checked"{% endifequal %} />QQ&nbsp;&nbsp;&nbsp;<input type="radio" name="type" value="msn" {% ifequal guest.type 'msn' %}checked="checked"{% endifequal %}/>MSN&nbsp;&nbsp;&nbsp;<input type="radio" name="type" value="tel" {% ifequal guest.type 'tel' %}checked="checked"{% endifequal %}/>手机或座机(记得带上区号)
+        </td>
+    </tr>
+    <tr>
+        <td  height="45px">
+            联系方式：
+        </td>
+        <td>
+            <input type="text" name="contact" value="{{guest.contact}}" style="width:400px;height: 20px;">如果您需要我的回复，请留下联系方式。
+        </td>
+    </tr>
+    <tr>
+        <td height="45px">
+            昵称：
+        </td>
+        <td>
+            <input type="text" name="nickname" value="{{guest.nickname}}" style="width:400px;height: 20px;" maxlength="20">
+        </td>
+    </tr>
+    <tr>
+        <td height="55px">
+            头像：<input type="hidden" name="face" value="1" id="face"/>
+
+            <script type="text/javascript">
+                function selectFace(facename){
+                    for(var i=1;i<8;i++){
+                        document.getElementById('td'+i).style.background='#ffffff';
+                    }
+                    var facetd=document.getElementById('td'+facename);
+                    facetd.style.background='#c0c0c0';
+                    document.getElementById('face').value=facename;
+                }
+            </script>
+        </td>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td id="td1" style="background: #c0c0c0" align="center"><a href="javascript:selectFace('1')"><img src="/static/img/default/face/face1.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td2"  align="center"><a href="javascript:selectFace('2')"><img src="/static/img/default/face/face2.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td3"  align="center"><a href="javascript:selectFace('3')"><img src="/static/img/default/face/face3.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td4"  align="center"><a href="javascript:selectFace('4')"><img src="/static/img/default/face/face4.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td5"  align="center"><a href="javascript:selectFace('5')"><img src="/static/img/default/face/face5.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td6"  align="center"><a href="javascript:selectFace('6')"><img src="/static/img/default/face/face6.gif" width="48px" height="48px" border="0"/></a></td>
+                    <td id="td7"  align="center"><a href="javascript:selectFace('7')"><img src="/static/img/default/face/face7.gif" width="48px" height="48px" border="0"/></a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            内容：
+        </td>
+        <td>
+            <script type="text/plain" id="editor" style="width:400px" name="comment"></script>
+        </td>
+    </tr>
+    <tr>
+        <td height="45px">
+            验证码：
+        </td>
+        <td valign="middle">
+            <div style="float: left;"><input type="text" name="imagecode" style="width: 120px;height: 20px;"/></div><div style="float: left;"><img src="/imagecode?nocache={% now "YMjhms" %}" onclick="this.setAttribute('src','/imagecode?nocache='+(new Date()))" alt="验证码"/></div>
+        </td>
+    </tr>
+    <tr height="45px">
+        <td colspan="2" align="center">{% csrf_token %}
+           <input type="submit" value="提交" style="width:60px;"><input type="button" value="对博文评论" id='replaybutton' style="margin-left:10px;display:none;"  onclick="replay('')">{% if title%}<input type="hidden" name="titleid" value="{{title.id}}"/><input type="hidden" id="paperid" name="paperid" />{% endif%}<input id="commentid" type="hidden" name="commentid">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            {% include 'default2/include/msg.html' %}
+
+        </td>
+    </tr>
+</table>
+</form>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({type: "POST",
+                    url: "/blog/papercount",
+                    data:{titleid:"{{ title.id }}",paperid:paperdetailid},
+                    dataType:'json',
+                    async: true,
+                    success: function(data){
+                           if(data.success){
+                               $('#showNumFont').html(data.showNum);
+                               $('#replayNumFont').html(data.replayNum);
+                           }
+                    }
+
+                });
+    });
+</script>

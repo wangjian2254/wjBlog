@@ -1,0 +1,44 @@
+{% extends "default2/base.html" %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+	<td colspan='3'>
+		<b><a href='/blog/Admin'>网站后台管理</a> >> <a href='/blog/Admin/manageAlbum/list'>相册管理 </a > >> <font class='redfont'>{{menu.name}}</font></b> >><a href="/blog/Admin/manageAlbum/save?menuid={{album.id}}">添加相册</a>
+	</td>
+</tr>
+<tr>
+	<td style='width:40px;' colspan="3">
+        {% include 'default2/include/msg.html' %}
+	</td>
+</tr>
+<tr>
+	<td colspan="3" >
+        {% for album in albumlist %}
+            <div style="width: 150px;height: 200px;float: left;padding: 10px;text-align: center;"><a href="/blog/Admin/manageAlbum/upload?albumId={{ album.id }}"><img src="{{ album.firstImage.imgsmal }}" alt="Image" border="0" style="max-width: 130px"  height="100"/></a><div style="width: 100%;text-align: center;"><a href="/blog/Admin/manageAlbum/upload?albumId={{ album.id }}">{{ album.title }}</a></div></div>
+        {% endfor %}
+
+	</td>
+</tr>
+
+<tr>
+    <td align="right" colspan='3' >
+        <a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset=0'>第一页</a>&nbsp;&nbsp;&nbsp;
+            {% for page in pagelist %}
+                {% ifequal page.offset offset %}
+                    {{ page.page }}&nbsp;&nbsp;&nbsp;
+                {% else %}
+                    <a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset={{ page.offset }}'>{{ page.page }}</a>&nbsp;&nbsp;&nbsp;
+                {% endifequal %}
+
+            {% endfor %}
+                <a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset={{ lastpage }}'>最后一页</a>&nbsp;&nbsp;&nbsp;
+    	<!--<a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset=0'>第一页</a>　　<a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset={{offsetP}}'>上一页</a>　　{% ifnotequal offset offsetN %}<a href='/blog/Admin/managePaper/list?menuid={{ menu.id }}&offset={{offsetN}}'>下一页</a>{% endifnotequal %}
+        -->
+    </td>
+</tr>
+{% endblock %}

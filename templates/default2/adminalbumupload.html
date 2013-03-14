@@ -1,0 +1,72 @@
+{% extends "default2/base.html" %}
+{% block script %}
+    <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+
+
+
+<tr>
+	<td >
+		<b><a href='/blog/Admin'>网站后台管理</a> >> <a href='/blog/Admin/manageAlbum/list'>相册管理</a>  >>  <a href="/blog/Admin/manageAlbum/save?albumId={{ album.id }}">修改{{ album.title }}相册</a></b>
+	</td>
+</tr>
+<tr>
+  <td>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>相册：{{ album.title }}
+            </td>
+        </tr>
+    <tr>
+        <td>图片：<!--<a href="{{url}}?toolbartype=Basic" style="margin-left: 20px;">简单编辑器</a><a href="{{url}}?toolbartype=Default" style="margin-left: 20px;">复杂编辑器</a><a href="{{url}}?toolbartype=ipad" style="margin-left: 20px;">IPad编辑器</a>-->
+        </td>
+    </tr>
+    <tr>
+        <td height="600px">
+            <iframe id="swfupload" width="100%" height="600px" src="/static/swf/swfupload.html{% if album %}?titleid={{ album.id }}{% endif %}" frameborder="0" scrolling="no">
+
+            </iframe>
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>
+            <script type="text/javascript">
+                function check(){
+                    //document.getElementById('papercontent').value=editor.getContent();
+
+                    return true;
+                }
+                {% if album %}
+                    //document.getElementById('swfupload').contentDocument.getElementById('swfupload').getImageList('{{ album.id }}');
+                {% endif %}
+                function savePaper(){
+                    document.getElementById('swfupload').contentWindow.document.getElementById('swfupload').uploadImg({{ album.id }});
+                }
+
+            </script>
+            <input type='button' id="formsubmit"  onclick="savePaper()" value='保存上传'><!--<input type="hidden" id="fromurl" name="fromurl" value="{{ fromurl }}"/>{% csrf_token %}<input type='hidden' id="id" name='id' value='{{ paper.id }}'><input type='hidden' id="offset" name='offset' value='{{ offset }}'>
+            -->
+        </td>
+    </tr>
+    <tr>
+            <td>
+                {% include 'default2/include/msg.html' %}
+
+            </td>
+        </tr>
+  </table>
+    </td>
+      </tr>
+{% endblock %}
+
+{% block ucedit %}
+
+{% endblock %}

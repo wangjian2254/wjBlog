@@ -1,0 +1,43 @@
+{% extends "default2/base.html" %}
+{% block title %}<title>{{ webinfo.webname }}</title>
+<meta name="Keywords" content="{{ webinfo.keyword }}" />
+<meta name="Description" content="{{ webinfo.desc }}" />
+{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+    <td align="left" >
+    	<a href='/' title='{{webinfo.webname}}'>首页</a> >> 提示
+    </td>
+</tr>
+<tr height='30px'>
+    <td align="center" >
+    	<b style='font-size:14px;'>订阅提示</b>
+    </td>
+</tr>
+<tr ><td align="center" >
+    {%if subscribmail.success%}
+    {%if subscribmail.flag%}
+    您的邮箱：<span style="color:red">{{subscribmail.email}}</span> 已经从订阅列表中删除。
+
+    {%else%}
+您的邮箱：<span style="color:red">{{subscribmail.email}}</span> 已经加入订阅列表。<br/>当我发布新的博文时，您将会收到电子邮件提示。
+
+    {%endif%}
+    {%else%}
+您提供的邮箱：<span style="color:red">{{subscribmail.email}}</span> 格式不正确。<br>
+<form action="/blog/emailSubscribe.html" method="post"><input type="text" name="email" value="{{subscribmail.email}}" style="width:120px;" ><input type="submit" value="重新订阅"><input type="hidden" name="fromurl" value="{{subscribmail.fromurl}}"></form>
+
+    {%endif%}</td>
+</tr>
+<tr >
+	<td align="center" >{%if subscribmail.fromurl%}<a href="{{subscribmail.fromurl}}">返回</a>{%endif%}
+	</td>
+</tr>
+
+{% endblock %}

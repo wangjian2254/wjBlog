@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="/static/default2css/css.css" />
+{% block title %}<title>{{webinfo.webname}}</title>{% endblock %}
+{% block script %}{% endblock %}
+<script type="text/javascript" src="/static/js/siteShow.js"/>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20025612-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body style='background-image:url(/static/img/back.jpg)'><center>
+	<div style='width:996px;background-image:url(/static/img/index_04.jpg);'>
+	<div style='background-image:url(/static/img/index_01.jpg);width:996px;height:186px;text-align:left;'>
+		<div style="margin-left:80px;padding-top:25px;"><a href='/' title='{{webinfo.webname}}'><b style='font-size:30px;font-family:隶书;color:#ffffff;'>{{webinfo.webname}}</b></a></div>
+        <div style=""><div style="margin-left:50px;padding-top:15px;float:left;"><a href="/rss.xml" target="_blank" title="订阅我的博客"><span style="font-size:15px;color:#ffffff;vertical-align:top;">订阅我的博客</span></a> </div><div style="float:left;"><a href="/rss.xml" target="_blank" title="订阅我的博客"><img src="/static/img/default/rssadd.png" border="0" alt="订阅RSS" width="50"></a></div></div>
+	    <div style="margin-left:50px;padding-top:5px;width:100%;float:left;"><form action="/blog/emailSubscribe.html" method="post" style="color:#ffffff;">Email订阅：<input type="text" name="email" style="width:120px;" ><input type="submit" value="订阅">&nbsp;&nbsp;(现有 {{left.subscribeNum}} 人订阅)</form></div>
+    </div>
+	<div style='width:996px;overflow: hidden;display: block;word-wrap:break-word;margin-left:auto;margin-right:auto;background-image:url(/static/img/index_02.jpg);background-repeat:no-repeat;'>
+    <div style="width: 284px;float: left;text-align: left;height: 100%;display: block;">
+    <div style="width: 234px;margin-left: 50px;text-align: left;height: 100%;display: block;">
+        {% block left %}
+
+        {% endblock %}
+    </div>
+
+    </div>
+        <div style="width: 692px;float: right;text-align: left;height: 100%;display: block;">
+        <div style="width: 100%;float: left;margin-bottom: 20px;"><b>{% block menu %}| {% endblock %}</b></div>
+        <div style="width: 590px;float: left;overflow: hidden;padding-left: 20px;margin-top: 5px;text-align: left;background-image:url(/static/img/index1.gif);background-repeat:repeat-y;">
+            {% block paper %}
+            {% endblock %}
+        </div>
+    </div>
+
+
+</div>
+        <div style='width:996px;min-height: 200px;float: left;background-image:url(/static/img/index_04.jpg);'>
+                    <div style="width: 284px;float: left;text-align: center;vertical-align: top;height:200px;background-image:url(/static/img/back.jpg);background-repeat:repeat;">
+                            <img src="/static/img/index1_06.jpg" alt="" border="0">
+                        </div>
+                    <div style="width: 622px;float: left;min-height: 180px;margin-left: 20px;margin-top: 5px;background-image:url(/static/img/index1.gif);background-repeat:repeat-y;text-align:left;">
+                        &nbsp;
+                    </div>
+                </div>
+	<div style='background-image:url(/static/img/index_06.jpg);width:996px;height:186px;float: left;'>
+		<div style='padding-top:170px;'>技术支持:鲤鱼科技 </div>
+	</div>
+</div>
+
+</center>
+
+</body>
+{% block ucedit %}
+{% endblock %}
+</html>

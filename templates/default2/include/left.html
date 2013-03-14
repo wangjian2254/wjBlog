@@ -1,0 +1,98 @@
+{% load blog_filter %}
+<div style='line-height: 45px;padding-left:60px;background-image:url(/static/img/index1_04.jpg);background-repeat:no-repeat;height:45px;'>
+	<b>个人简介</b>
+</div>
+<div style='padding-left:15px;padding-right:15px;' align="left">
+	<a href="/" >{%if left.adminInfo.img%}<img src="{{left.adminInfo.img}}" alt="{{webinfo.webname}}" width="150" height="200" border="0">{%endif%}</a>
+</div>
+<div style='padding-left:15px;padding-right:15px;'>
+	&nbsp;&nbsp;&nbsp;&nbsp;{{left.adminInfo.content}}
+</div>
+<div style='padding-left:15px;padding-right:15px;'>&nbsp;
+</div>
+<div style='padding-left:15px;padding-right:15px;' align="left">
+    <a href="/blog/Admin/managePaper/save"><img src="/static/img/add.gif" border="0"  style="margin-left:5px;margin-right:5px;" alt="写博文">写博文</a>
+	<a href="/blog/Admin/AdminInfo" ><img src="/static/img/user.gif" border="0"  style="margin-left:5px;margin-right:5px;" alt="个人信息">个人信息</a>
+</div>
+
+<div style='padding-left:15px;padding-right:15px;' align="left"><a href="/blog/Admin/manageAlbum/list"><img src="/static/img/pics.gif" border="0"  style="margin-left:5px;margin-right:5px;" alt="管理相册">管理相册</a>
+	<a href="/blog/Admin"><img src="/static/img/p3.gif" border="0" style="margin-left:5px;margin-right:5px;" alt="系统管理">系统管理</a>
+</div>
+
+<div style='padding-left:15px;padding-right:15px;' align="left">
+    {% if user.id %}
+    <a href="/accounts/logout/"><img src="/static/img/goback.png" border="0"  style="margin-left:5px;margin-right:5px;" alt="退出">退出</a>
+    {% else %}
+        <a href="/accounts/login/"><img src="/static/img/goin.png" border="0"  style="margin-left:5px;margin-right:5px;" alt="登录">登录</a>
+    {% endif %}
+</div>
+
+<div style='padding-left:15px;padding-right:15px;'>&nbsp;
+</div>
+<div style='line-height: 45px;padding-left:60px;background-image:url(/static/img/index1_04.jpg);background-repeat:no-repeat;height:45px;'>
+		<b>最新博文留言</b>
+</div>
+{% for comment in left.commentlist %}
+<div class="lefttd">
+        <div class="leftcomment">
+		<a href="{{ comment.paperUrl }}">{{ forloop.counter }}.{{ comment.content|striptags }}</a>
+        </div>
+	</div>
+{% endfor %}
+<div style='line-height: 45px;padding-left:60px;background-image:url(/static/img/index1_04.jpg);background-repeat:no-repeat;height:45px;'>
+		<b>关键字</b></a>
+	</div>
+<div  class="lefttd">
+        <style>
+            a.keyword0{
+                font-size: 12px;
+            }
+            a.keyword1{
+                font-size: 14px;
+            }
+            a.keyword2{
+                font-size: 16px;
+            }
+            a.keyword3{
+                font-size: 18px;
+            }
+            a.keyword4{
+                font-size: 20px;
+            }
+            a.keyword5{
+                font-size: 22px;
+            }
+            a.keyword6{
+                font-size: 24px;
+            }
+            a.keyword7{
+                font-size: 26px;
+            }
+            a.keyword8{
+                font-size: 28px;
+            }
+            a.keyword9{
+                font-size: 30px;
+            }
+        </style>
+		<div class="leftcomment">{% for keyword in left.keywordlist %}<a href="/blog/keywords?keyword={{ keyword.id }}" class="keyword{{ keyword.count|keywordStyle:left.keywordstyle }}">{{ keyword.name }}</a>&nbsp;&nbsp; {% endfor %}</div>
+	</div>
+{% for m in left.menulist %}
+<div style='line-height: 45px;padding-left:60px;background-image:url(/static/img/index1_04.jpg);background-repeat:no-repeat;height:45px;'>
+		<a href="{{ m.url }}"><b>{{ m.name|escape }}</b></a>
+	</div>
+{% for p in m.paperlist %}
+<div  class="lefttd">
+		<div class="leftcomment"><a href="{{ p.url }}" >{{ forloop.counter }}.{{ p.title|escape }}</a></div>
+	</div>
+{% endfor %}
+<div align='right' style='padding-right:15px;'>
+		<a href="{{ m.url }}">更多…</a>
+	</div>
+{% endfor %}
+<div style='line-height: 45px;padding-left:60px;background-image:url(/static/img/index1_04.jpg);background-repeat:no-repeat;height:45px;'>
+	<b>访问统计</b>
+</div>
+<div style='padding-left:15px;padding-right:15px;'>
+	&nbsp;&nbsp;&nbsp;&nbsp;时至今日，共有<span class='redfont'>{{left.showNum}}</span>位朋友在这里留下足迹
+</div>

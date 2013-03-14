@@ -1,0 +1,109 @@
+{% extends "default2/base.html" %}
+{% block script %}
+{% ifnotequal toolbartype 'ipad' %}
+    <script type="text/javascript">
+        <!--
+//        window.UEDITOR_HOME_URL = location.pathname.substr(0, location.pathname.lastIndexOf('/')) + '/';
+        window.UEDITOR_HOME_URL = '/static/ueditor/';
+        //-->
+    </script>
+    <script type="text/javascript" src="/static/ueditor/editor_config.js"></script>
+    <script type="text/javascript" src="/static/ueditor/editor_all_min.js"></script>
+
+    <link rel="stylesheet" href="/static/ueditor/themes/default/ueditor.css" />
+
+{%endifnotequal%}
+
+{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+
+
+
+<tr>
+	<td >
+		<b><a href='/blog/Admin'>网站后台管理</a> >> <a href='/blog/Admin'>文章管理</a>  >>  <a href=/blog/Admin/managePaper/list?menuid={{ menu.id }}><font class='redfont'>{{menu.name}}</font></a></b>
+	</td>
+</tr>
+<tr>
+  <td>
+
+<form action='/blog/Admin/managePaper/save' method='post'>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr height='20'>
+        <td>分　类：<select name='menuid' style='width:300px;'>
+				{% for m in menulist %}
+        		<option value='{{ m.id }}'  {% ifequal menu.id m.id %} selected='selected' {% endifequal %}>{{ m.name }}</option>
+				{% endfor %}
+        	</select>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/blog/Admin/manageMenu"><img src="/static/img/tag.gif" border="0" style="margin-right:5px;" alt="添加博文分类">添加博文分类</a>
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>标　题：<input type='text' id="title" name='title' maxlength=500 style='width:400px;' value='{{ paper.title }}'>
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>关键字：<input type='text' name='keyword' maxlength=500 style='width:400px;' value='{{ paper.getKeyword }}'>（空格隔开）
+        </td>
+    </tr>
+    <tr>
+        <td>内容简介：
+        </td>
+    </tr>
+    <tr>
+        <td ><textarea name='desc' id="desc" style='width:500px;height:80px'>{{ paper.desc }}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>内容：<!--<a href="{{url}}?toolbartype=Basic" style="margin-left: 20px;">简单编辑器</a><a href="{{url}}?toolbartype=Default" style="margin-left: 20px;">复杂编辑器</a><a href="{{url}}?toolbartype=ipad" style="margin-left: 20px;">IPad编辑器</a>-->
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <script type="text/plain" id="editor" style="width:550px;max-width:550px;" name="papercontent">{{ paper.paper.content|safe }}</script>
+
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>
+            <script type="text/javascript">
+                function check(){
+                    //document.getElementById('papercontent').value=editor.getContent();
+                    var title=document.getElementById('title').value.replace(/\s/g,'');
+                    var desc=document.getElementById('desc').value.replace(/\s/g,'');
+                    if(title==undefined||title==''||desc==undefined||desc==''){
+                        alert("标题和内容简介，必须填写。");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+            <input type='submit' onclick="return check()" value='保存'><input type="hidden"  name="fromurl" value="{{ fromurl }}"/>{% csrf_token %}<input type='hidden' name='id' value='{{ paper.id }}'><input type='hidden' name='offset' value='{{ offset }}'>
+        </td>
+    </tr>
+    <tr>
+            <td>
+                {% include 'default2/include/msg.html' %}
+
+            </td>
+        </tr>
+  </table>
+</form>
+    </td>
+      </tr>
+{% endblock %}
+
+{% block ucedit %}
+    <script type="text/javascript">
+        setTimeout(function(){
+        var editor = new UE.ui.Editor();
+                editor.render('editor');
+           },800);
+        //editor.setContent("ssd");
+    </script>
+{% endblock %}

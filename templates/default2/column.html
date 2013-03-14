@@ -1,0 +1,67 @@
+{% extends "default2/base.html" %}
+{% block title %}<title>{{titlename}}-{{ webinfo.webname }}</title>{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+
+<tr>
+	<td style='width:40px;' colspan="3">
+        <a href='/' title='{{webinfo.webname}}'>首页</a> >> {%if menu%}{{ menu.name }}{%endif%}{% if keyword %}关键字:{{ keyword.name }}{%endif%}
+	</td>
+</tr>
+<tr>
+	<td style='width:40px;'>序号
+	</td>
+    <td align='center'>文章标题
+    </td>
+    <td style='width:150px;' align='center'>发布时间
+    </td>
+
+</tr>
+{% for paper in paperlist %}
+<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+	<td >{{ forloop.counter|add:offset}}
+	</td>
+	<td ><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.title }}</a>
+	</td>
+    <td align='center'><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.releaseDate|date:"Y年m月d日 H时i分"}}</a>
+    </td>
+
+</tr>
+{% endfor %}
+<tr>
+    <td align="right" colspan='3' >
+        {%if menu%}
+            <a href='/blog/{{ menu.id }}.html?offset=0'>第一页</a>&nbsp;&nbsp;&nbsp;
+            {% for page in pagelist %}
+                {% ifequal page.offset offset %}
+                    {{ page.page }}&nbsp;&nbsp;&nbsp;
+                {% else %}
+                    <a href='/blog/{{ menu.id }}.html?offset={{ page.offset }}' >{{ page.page }}</a>&nbsp;&nbsp;&nbsp;
+                {% endifequal %}
+
+            {% endfor %}
+                <a href='/blog/{{ menu.id }}.html?offset={{ lastpage }}'>最后一页</a>&nbsp;&nbsp;&nbsp;
+        {%endif%}
+        {% if keyword %}
+            <a href='/blog/keywords?keyword={{ keyword.id }}&offset=0'>第一页</a>&nbsp;&nbsp;&nbsp;
+            {% for page in pagelist %}
+                {% ifequal page.offset offset %}
+                    {{ page.page }}&nbsp;&nbsp;&nbsp;
+                {% else %}
+                    <a href='/blog/keywords?keyword={{ keyword.id }}&offset={{ page.offset }}'>{{ page.page }}</a>&nbsp;&nbsp;&nbsp;
+                {% endifequal %}
+
+            {% endfor %}
+                <a href='/blog/keywords?keyword={{ keyword.id }}&offset={{ lastpage }}'>最后一页</a>&nbsp;&nbsp;&nbsp;
+        {%endif%}
+
+    	　　<!--<a href='/blog/{{ menu.id }}.html?offset={{offsetP}}'>上一页</a>　　{% ifnotequal offset offsetN %}<a href='/blog/{{ menu.id }}.html?offset={{offsetN}}'>下一页</a>{% endifnotequal %}
+               -->
+    </td>
+</tr>
+{% endblock %}

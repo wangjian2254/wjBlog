@@ -1,0 +1,75 @@
+{% extends "default2/base.html" %}
+{% block title %}<title>{{webinfo.webname}}_博文</title>
+<meta name="Keywords" content="博文" />
+<meta name="Description" content="博文列表。" />
+{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+    <td align="left" colspan='3' >
+    	<a href='/' title='{{webinfo.webname}}'>首页</a> >> {%if menu%}{{ menu.name }}{%else%}博文分类标签{%endif%}
+    </td>
+</tr>
+{#{% if menu%}#}
+{#<tr>#}
+{#	<td style='width:30px;' align='center'>序号#}
+{#	</td>#}
+{#	<td align='center'>文章标题#}
+{#	</td>#}
+{#	<td style='width:150px;' align='center'>更新时间#}
+{#	</td>#}
+{#</tr>#}
+{#{% for paper in menu.paperlist %}#}
+{#<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">#}
+{#	<td align='center'>{{ forloop.counter }}#}
+{#	</td>#}
+{#	<td align='left'><a href='/paper/{{ paper.id }}.html' title='{{paper.desc}}'>{{ paper.title }}</a>#}
+{#	</td>#}
+{#	<td align='center'><a href='/paper/{{ paper.id }}.html'>{{ paper.updateTime|date:"Y年m月d日 H时i分"}}</a>#}
+{#	</td>#}
+{#</tr>#}
+{#{% endfor %}#}
+{#<tr>#}
+{#    <td align="right" colspan='3' >#}
+{#    	{%ifnotequal pageNum 1%}<a href='/paperlist/{{ menu.id }}/20/0.html'>第一页</a>　　<a href='/paperlist/{{ menu.id }}/20/{{offsetP}}.html'>上一页</a>　　{%endifnotequal%}当前是第 <span style="color:red;">{{pageNum}}</span> 页　　<a href='/paperlist/{{ menu.id }}/20/{{offsetN}}.html'>下一页</a>#}
+{#		#}
+{#    </td>#}
+{#</tr>#}
+{#{%else%}#}
+ {%for menu in menus%}
+<tr>
+	<td style='width:20px;padding-left:20px;' align='left' colspan="2"><a href="/blog/{{menu.id}}.html">{{menu.name}}({{menu.totalcount}})</a>
+	</td>
+    <td style='width:150px;' align='center'>
+	</td>
+</tr>
+{% for paper in menu.paperlist %}
+<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+	<td align='center'>{{ forloop.counter }}.
+	</td>
+	<td align='left'><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' title='{{paper.desc}}'  target="_blank">{{ paper.title }}</a>
+	</td>
+	<td align='center' ><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html'  target="_blank">{{ paper.releaseDate|date:"Y年m月d日 H时i分"}}</a>
+	</td>
+</tr>
+<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+    <td align='left' colspan="3">{{ paper.desc }}</td>
+</tr>
+<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+    <td align='left' colspan="3"></td>
+</tr>
+{% endfor %}
+<tr>
+    <td align="right" colspan='3' >
+        <a href='/blog/{{ menu.id }}.html' target="_blank">更多...</a>
+
+    </td>
+</tr>
+ {%endfor%}
+{#{%endif%}#}
+{% endblock %}

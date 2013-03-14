@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block script %}
+{% ifnotequal toolbartype 'ipad' %}
+<script type="text/javascript" src="/medias/fckeditor/fckeditor.js"></script>
+<script type="text/javascript">
+   window.onload = function ()
+   {
+       var oFCKeditor = new FCKeditor('content', '590', '600');
+       oFCKeditor.BasePath = "/medias/fckeditor/";
+       oFCKeditor.ToolbarSet='{{toolbartype}}';
+       oFCKeditor.Value = '';
+       oFCKeditor.ReplaceTextarea();
+   };
+</script>
+{%endifnotequal%}
+
+{% endblock %}
+{% block left %}
+{% include 'include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'include/menu.html' %}
+{% endblock %}
+{% block paper %}
+<tr>
+	<td >
+		<b><a href='/Admin'>网站后台管理</a> >> <a href='/Admin'>文章管理</a>  >>  <a href='/Admin/managePaper/list/{{ menu.id }}/0'><font class='redfont'>{{menu.name}}</font></a></b>
+	</td>
+</tr>
+<form action='/Admin/managePaper/save' method='post'>
+    <tr height='20'>
+        <td>分　类：<select name='menu' style='width:300px;'>
+				{% for m in menulist %}
+        		<option value='{{ m.id }}'  {% ifequal menu.id m.id %} selected='selected' {% endifequal %}>{{ m.name }}</option>
+				{% endfor %}
+        	</select>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Admin/manageMenu"><img src="/static/img/tag.gif" border="0" style="margin-right:5px;" alt="添加博文分类">添加博文分类</a>
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>标　题：<input type='text' id="title" name='title' maxlength=500 style='width:400px;' value='{{ paper.title }}'>
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>关键字：<input type='text' name='keyword' maxlength=500 style='width:400px;' value='{{ paper.keyword }}'>（空格隔开）
+        </td>
+    </tr>
+    <tr>
+        <td>内容简介：
+        </td>
+    </tr>
+    <tr>
+        <td ><textarea name='desc' id="desc" style='width:500px;height:80px'>{{ paper.desc }}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>内容：<a href="{{url}}?toolbartype=Basic" style="margin-left: 20px;">简单编辑器</a><a href="{{url}}?toolbartype=Default" style="margin-left: 20px;">复杂编辑器</a><a href="{{url}}?toolbartype=ipad" style="margin-left: 20px;">IPad编辑器</a>
+        </td>
+    </tr>
+    <tr>
+        <td><textarea name="content" id="id_text" tabindex="4" {%ifequal toolbartype 'ipad'%}style='width:500px;height:250px'{%endifequal%}>{{paper.content}}</textarea>
+            {%ifequal toolbartype 'ipad'%}<input type="hidden" name="ipad" value="ipad" />{%endifequal%}
+        </td>
+    </tr>
+    <tr height='20'>
+        <td>
+            <script type="text/javascript">
+                function check(){
+                    var title=document.getElementById('title').value.replace(/\s/g,'');
+                    var desc=document.getElementById('desc').value.replace(/\s/g,'');
+                    if(title==undefined||title==''||desc==undefined||desc==''){
+                        alert("标题和内容简介，必须填写。");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+            <input type='submit' onclick="return check()" value='保存'>　　<input type='reset' value='清空'><input type='hidden' name='id' value='{{ paper.id }}'><input type='hidden' name='offset' value='{{ offset }}'>
+        </td>
+    </tr>
+{% endblock %}

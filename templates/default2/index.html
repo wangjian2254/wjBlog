@@ -1,0 +1,42 @@
+{% extends "default2/base.html" %}
+{% block title %}<title>{{webinfo.webname}}</title>
+<meta name="Keywords" content="{{webinfo.keyword}}" />
+<meta name="Description" content="{{webinfo.desc}}" />
+{% endblock %}
+{% block left %}
+{% include 'default2/include/left.html' %}
+{% endblock %}
+{% block menu %}
+{% include 'default2/include/menu.html' %}
+{% endblock %}
+{% block paper %}
+{% for paper in paperlist %}
+<div  class="line_desc">
+	<b><a href='{{ paper.url }}'>{{ paper.getTypeStr }} {{paper.title}}</a></b>
+</div>
+{% ifequal paper.type 'paper' %}
+    <div  class="line_desc">
+        <span class="descText">{{paper.desc}}</span>
+    </div>
+{% endifequal %}
+{% ifequal paper.type 'image' %}
+    <div  class="line_desc" >
+        <span class="descText">{{paper.desc}}</span>
+    </div>
+    <div  class="line_desc">
+        {% for img in paper.imglist %}
+        <a href='{{ paper.url }}'><img src="{{ img.imgsmall }}" border="0" alt="{{ paper.title }}"/></a>
+        {% endfor %}
+    </div>
+{% endifequal %}
+{% ifequal paper.type 'album' %}
+    <div  class="line_desc">
+        {% for img in paper.imglist %}
+        <a href='{{ paper.url }}'><img src="{{ img.imgsmall }}" border="0" alt="{{ paper.title }}"/></a>
+        {% endfor %}
+    </div>
+{% endifequal %}
+<div  class="line_desc_look">目前有<font class='redfont'>{{paper.showNum}}</font>人看了这篇文章，有<font class='redfont'>{{ paper.replyNum }}</font>人发表了自己的观点!  &nbsp;&nbsp;&nbsp;&nbsp;<a href='{{ paper.url }}' >查看全文</a></div>
+
+{% endfor %}
+{% endblock %}

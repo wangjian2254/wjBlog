@@ -193,14 +193,14 @@ def getRemoteImage(funname,site,request):
 @csrf_exempt
 @domain_site
 def imageManager(funname,site,request):
-    str=''
+    strs=''
 #    uri='http://'+request.META['HTTP_HOST']+UPLOAD_URL
     uri=str(site.get('id'))+'/'
-    for ufile in UeditorFile.objects.filter(site=SITE_ID):
-        str+=uri+ufile.realfilename+ue_separate_ue
-    if str:
-        str=str[:0-len(ue_separate_ue)]
-    return HttpResponse(str)
+    for ufile in UeditorFile.objects.filter(site=WebSiteInfo.objects.get(pk=site.get('id'))):
+        strs+=uri+ufile.realfilename+ue_separate_ue
+    if strs:
+        strs=strs[:0-len(ue_separate_ue)]
+    return HttpResponse(strs)
 
 @login_required
 @csrf_exempt

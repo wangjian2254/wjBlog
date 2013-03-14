@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="icon" type="image/png" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/css/css.css" />
+<title>{% block title %}张庆利律师为您服务{% endblock %}</title>
+{% block script %}{% endblock %}
+<script language='JavaScript'>
+	function closeWindow(s) 
+{
+	window.open('/pics/click/'+s+'.html?ImageButton','frmMain');
+ 　 window.opener = null;
+ 　 window.open(' ', '_self', ' '); 
+ 　 window.close();
+}
+</script>
+</head>
+<body ><center>
+	<div >
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+    {% for img in imglist1 %}
+        <td><a href="javascript:closeWindow('{{img}}');"><img src='/pics/s/{{img}}/200/0'  width='200' /></a>
+        </td>
+	{% endfor %}
+    </tr>
+	<tr>
+    {% for img in imglist2 %}
+        <td><a href="javascript:closeWindow('{{img}}');"><img src='/pics/s/{{img}}/200/0'  width='200' /></a>
+        </td>
+	{% endfor %}
+    </tr>
+	<tr>
+    {% for img in imglist3 %}
+        <td><a href="javascript:closeWindow('{{img}}');"><img src='/pics/s/{{img}}/200/0'  width='200' /></a>
+        </td>
+	{% endfor %}
+    </tr>
+	<tr>
+		<td colspan='4'>
+			<a href='/pics/list/0'>第一张</a> 　　<a href='/pics/list/{{offsetP}}'>上一张</a>  　　<a href='/pics/list/{{offsetN}}'>下一张 </a> 
+		</td>
+	</tr>
+</table>
+
+</div>
+</center>
+
+</body>
+
+</html>
