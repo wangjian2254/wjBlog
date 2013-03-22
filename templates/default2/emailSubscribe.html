@@ -10,17 +10,13 @@
 {% include 'default2/include/menu.html' %}
 {% endblock %}
 {% block paper %}
-<tr>
-    <td align="left" >
+    <div  class="line_desc">
     	<a href='/' title='{{webinfo.webname}}'>首页</a> >> 提示
-    </td>
-</tr>
-<tr height='30px'>
-    <td align="center" >
+    </div>
+    <div  class="line_center">
     	<b style='font-size:14px;'>订阅提示</b>
-    </td>
-</tr>
-<tr ><td align="center" >
+    </div>
+    <div  class="line_center">
     {%if subscribmail.success%}
     {%if subscribmail.flag%}
     您的邮箱：<span style="color:red">{{subscribmail.email}}</span> 已经从订阅列表中删除。
@@ -33,11 +29,8 @@
 您提供的邮箱：<span style="color:red">{{subscribmail.email}}</span> 格式不正确。<br>
 <form action="/blog/emailSubscribe.html" method="post"><input type="text" name="email" value="{{subscribmail.email}}" style="width:120px;" ><input type="submit" value="重新订阅"><input type="hidden" name="fromurl" value="{{subscribmail.fromurl}}"></form>
 
-    {%endif%}</td>
-</tr>
-<tr >
-	<td align="center" >{%if subscribmail.fromurl%}<a href="{{subscribmail.fromurl}}">返回</a>{%endif%}
-	</td>
-</tr>
+    {%endif%}</div>
+    <div  class="line_center">{%if subscribmail.fromurl%}<a href="{{subscribmail.fromurl}}">返回</a>{%endif%}
+	</div>
 
 {% endblock %}

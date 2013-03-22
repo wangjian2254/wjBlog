@@ -7,34 +7,21 @@
 {% include 'default2/include/menu.html' %}
 {% endblock %}
 {% block paper %}
-
-<tr>
-	<td style='width:40px;' colspan="3">
-        <a href='/' title='{{webinfo.webname}}'>首页</a> >> {%if menu%}{{ menu.name }}{%endif%}{% if keyword %}关键字:{{ keyword.name }}{%endif%}
-	</td>
-</tr>
-<tr>
-	<td style='width:40px;'>序号
-	</td>
-    <td align='center'>文章标题
-    </td>
-    <td style='width:150px;' align='center'>发布时间
-    </td>
-
-</tr>
+<div class="line_desc">
+    <a href='/' title='{{webinfo.webname}}'>首页</a> >> {%if menu%}{{ menu.name }}{%endif%}{% if keyword %}关键字:{{ keyword.name }}{%endif%}
+</div>
 {% for paper in paperlist %}
-<tr onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
-	<td >{{ forloop.counter|add:offset}}
-	</td>
-	<td ><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.title }}</a>
-	</td>
-    <td align='center'><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.releaseDate|date:"Y年m月d日 H时i分"}}</a>
-    </td>
+<div  class="line_desc" style="height: 25px;" onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#d9ffd9';">
+    <span class="fleft">{{ forloop.counter|add:offset}}.
+	</span>
+    <span class="fleft"><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.title }}</a>
+	</span>
+    <span class="fright"><a href='/blog/paper/{{ paper.menu_id }}/{{ paper.id }}.html' target="_blank">{{ paper.releaseDate|date:"Y年m月d日 H时i分"}}</a>
+    </span>
 
-</tr>
+</div>
 {% endfor %}
-<tr>
-    <td align="right" colspan='3' >
+    <div  class="line_desc">
         {%if menu%}
             <a href='/blog/{{ menu.id }}.html?offset=0'>第一页</a>&nbsp;&nbsp;&nbsp;
             {% for page in pagelist %}
@@ -59,9 +46,5 @@
             {% endfor %}
                 <a href='/blog/keywords?keyword={{ keyword.id }}&offset={{ lastpage }}'>最后一页</a>&nbsp;&nbsp;&nbsp;
         {%endif%}
-
-    	　　<!--<a href='/blog/{{ menu.id }}.html?offset={{offsetP}}'>上一页</a>　　{% ifnotequal offset offsetN %}<a href='/blog/{{ menu.id }}.html?offset={{offsetN}}'>下一页</a>{% endifnotequal %}
-               -->
-    </td>
-</tr>
+    </div>
 {% endblock %}

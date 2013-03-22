@@ -63,22 +63,15 @@
 {% include 'default2/include/menu.html' %}
 {% endblock %}
 {% block paper %}
-<tr>
-    <td align="left" >
-    	<a href='/' title='{{webinfo.webname}}'>首页</a> >> <a href='/blog/{{ title.menu.id }}.html'>返回{{ title.menu.name }}列表</a>
-    </td>
-</tr>
-<tr height='30px'>
-    <td align="center" >
+<div class="line_desc">
+    <a href='/' title='{{webinfo.webname}}'>首页</a> >> <a href='/blog/{{ title.menu.id }}.html'>返回{{ title.menu.name }}列表</a>
+</div>
+    <div class="biaoti">
     	<b style='font-size:14px;'>{{ title.title }}</b>({{ index }}/{{ totalimg }})
-    </td>
-</tr>
-<tr >
-	<td align="center" >作者：{{ title.author.get_full_name }} | 发布时间：{{ title.releaseDate|date:"Y年m月d日 H时i分"}}
-	</td>
-</tr>
-<tr>
-    <td align="left" >
+    </div>
+    <div  class="biaoti">作者：{{ title.author.get_full_name }} | 发布时间：{{ title.releaseDate|date:"Y年m月d日 H时i分"}}
+    	</div>
+    <div  class="line_desc">
     <p  style="text-align: right;">
         <a id="fancybox-manual-c" href="javascript:;">幻灯片显示</a>
     </p>
@@ -104,35 +97,20 @@
             {% endfor %}
         </p>
 
-    </td>
-</tr>
-<tr >
-	<td height='1px'>
-	</td>
-</tr>
-<tr >
-	<td >关键字：{% for k in title.getKeywordList %}<a href="/blog/keywords?keyword={{ k.id }}">{{ k.name }}</a>&nbsp;&nbsp;&nbsp;{% endfor %}
-	</td>
-</tr>
-<tr>
-    <td align="right" >
-    	<div style="float:left;margin-left:30px;">目前有<font class='redfont' id="showNumFont">{{ title.showNum }}</font>人看了这篇文章，有<font class='redfont' id="replayNumFont">{{ title.replyNum }}</font>人发表了自己的观点!</div>
-    </td>
-</tr>
-<tr height='5px;'>
-	<td>
-	</td>
-</tr>
-<tr >
-	<td>
-        {% include 'default2/include/commentlist.html' %}
-	</td>
-</tr>
-<tr >
-	<td>
-        {% include 'default2/include/comment.html' %}
-	</td>
-</tr>
+    </div>
+
+    <div  class="daohang">关键字：{% for k in title.getKeywordList %}<a href="/blog/keywords?keyword={{ k.id }}">{{ k.name }}</a>&nbsp;&nbsp;&nbsp;{% endfor %}
+    	</div>
+    <div  class="daohang" >
+        	<div style="float:left;margin-left:30px;">目前有<font class='redfont' id="showNumFont">{{ title.showNum }}</font>人看了这篇文章，有<font class='redfont' id="replayNumFont">{{ title.replyNum }}</font>人发表了自己的观点!</div>
+        </div>
+
+    <div style="text-align: left;margin-bottom: 10px;">
+            {% include 'default2/include/commentlist.html' %}
+    	</div>
+    <div  style="text-align: left;margin-bottom: 10px;">
+            {% include 'default2/include/comment.html' %}
+    	</div>
 {% endblock %}
 {% block ucedit %}
     <script type="text/javascript">

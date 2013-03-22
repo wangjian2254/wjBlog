@@ -6,17 +6,12 @@
 {% include 'default2/include/menu.html' %}
 {% endblock %}
 {% block paper %}
-<tr>
-	<td >
+    <div class="daohang" >
 		<b><a href='/blog/Admin'>网站后台管理</a></b>
-	</td>
-</tr>
-<tr class="littletr">
-	<td>网站信息管理
-	</td>
-</tr>
-<tr>
-    <td><form action="/blog/Admin/webinfo" method="post">
+	</div>
+    <div class="daohang" >网站信息管理
+	</div>
+    <div  class="line_desc"><form action="/blog/Admin/webinfo" method="post">
         <table width="90%" align="center">
             <tr >
                 <td style='padding:0px 0px 0px 30px;' colspan="2">网站名称：
@@ -31,7 +26,7 @@
                 </td>
             </tr>
             <tr>
-                <td style='padding:0px 0px 0px 30px;'>http://{{webinfo.webdomain}}<td width="200px">(网站的网址例如:www.zhangqingli.com)(10字内)	</td>
+                <td style='padding:0px 0px 0px 30px;'>http://{{webinfo.webdomain}}<td width="200px">(网站的网址例如:www.zxxsbook.com)(10字内)	</td>
                 </td>
             </tr>
             <tr >
@@ -62,30 +57,18 @@
             </tr>
         </table>
         </form>
-    </td>
-</tr>
-<tr class="littletr">
-	<td>个人简介管理：（修改）
-	</td>
-</tr>
-<tr>
-	<td style='padding:0px 0px 0px 30px;'><a href='/blog/Admin/AdminInfo'>进入个人简介管理</a>
-	</td>
-</tr>
-<tr class="littletr">
-	<td>博文分类管理：（添加、修改、删除）
-	</td>
-</tr>
-<tr>
-	<td style='padding:0px 0px 0px 30px;'><a href='/blog/Admin/manageMenu'>进入博文分类管理</a>
-	</td>
-</tr>
-<tr class="littletr">
-	<td>文章内容管理：（添加、修改、删除）
-	</td>
-</tr>
-<tr>
-	<td>
+    </div>
+    <div  class="line_desc">个人简介管理：（修改）
+	</div>
+    <div  class="line_desc"><a href='/blog/Admin/AdminInfo'>进入个人简介管理</a>
+	</div>
+    <div  class="line_desc">博文分类管理：（添加、修改、删除）
+	</div>
+    <div  class="line_desc"><a href='/blog/Admin/manageMenu'>进入博文分类管理</a>
+	</div>
+    <div  class="line_desc">文章内容管理：（添加、修改、删除）
+	</div>
+    <div  class="line_desc">
 <table width='100%' cellpadding=0 cellspacing=0 border=0>
 <tr >
 	<td style='padding:0px 0px 0px 30px;width:150px'>博文分类</td><td style='width:250px'> 添加 </td><td> 查看
@@ -99,47 +82,46 @@
 {% endfor %}
 
 </table>
-	</td>
-</tr>
+	</div>
 
-
-<tr class="littletr">
-	<td >微博管理：（授权）
-	</td>
-</tr>
-<tr>
-	<td style='padding:0px 0px 0px 30px;' >尚未开通：<span style="color: #0000ff">{% if not weibo.sinaisright %}<a href="/blog/Admin/login?website=sina"  style="margin-left: 10px;">新浪微博</a>{% endif %}{% if not weibo.wyisright %}<a href="/blog/Admin/login?website=wy" style="margin-left: 10px;">网易微博</a>{% endif %}{% if not weibo.qqisright %}<a href="/blog/Admin/login?website=teng" style="margin-left: 10px;">QQ微博</a>{% endif %}</span>
-	</td>
-</tr>
-<tr>
-	<td style='padding:0px 0px 0px 30px;'>已经开通：<span style="color: #0000ff">{% if weibo.sinaisright %}新浪微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.wyisright %}网易微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.qqisright %}QQ微博{% endif %}</span>
-	</td>
-</tr>
-<tr class="littletr">
-	<td >相册管理
-	</td>
-</tr>
-<tr>
-	<td style='padding:0px 0px 0px 30px;' ><a href="/blog/picshowList/12/0.html">进入相册管理</a>
-	</td>
-</tr>
-
-<tr class="littletr">
-	<td>我的风采（图片展示）
-	</td>
-</tr>
-<tr>
-	<td  style='padding:0px 0px 0px 30px;' >
-        <form action="/blog/Admin/setPicShow" method="post">
-            <label>选择我的风采展示相册：</label><br/>
-                <select name="picshow">
-                    <option value="">不选择任何相册</option>
-                    {%for tag in picshowtaglist%}
-                    <option value="{{tag.key.id}}" {%ifequal picshowtag tag.key.id%} selected="selected" {%endifequal%} >{{tag.tag}}</option>
-                    {%endfor%}
-            </select>
-            <input type="submit" value="保存设置" />
-        </form>
-	</td>
-</tr>
+{##}
+{#<tr class="littletr">#}
+{#	<td >微博管理：（授权）#}
+{#	</td>#}
+{#</tr>#}
+{#<tr>#}
+{#	<td style='padding:0px 0px 0px 30px;' >尚未开通：<span style="color: #0000ff">{% if not weibo.sinaisright %}<a href="/blog/Admin/login?website=sina"  style="margin-left: 10px;">新浪微博</a>{% endif %}{% if not weibo.wyisright %}<a href="/blog/Admin/login?website=wy" style="margin-left: 10px;">网易微博</a>{% endif %}{% if not weibo.qqisright %}<a href="/blog/Admin/login?website=teng" style="margin-left: 10px;">QQ微博</a>{% endif %}</span>#}
+{#	</td>#}
+{#</tr>#}
+{#<tr>#}
+{#	<td style='padding:0px 0px 0px 30px;'>已经开通：<span style="color: #0000ff">{% if weibo.sinaisright %}新浪微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.wyisright %}网易微博{% endif %}&nbsp;&nbsp;&nbsp;{% if weibo.qqisright %}QQ微博{% endif %}</span>#}
+{#	</td>#}
+{#</tr>#}
+{#<tr class="littletr">#}
+{#	<td >相册管理#}
+{#	</td>#}
+{#</tr>#}
+{#<tr>#}
+{#	<td style='padding:0px 0px 0px 30px;' ><a href="/blog/picshowList/12/0.html">进入相册管理</a>#}
+{#	</td>#}
+{#</tr>#}
+{##}
+{#<tr class="littletr">#}
+{#	<td>我的风采（图片展示）#}
+{#	</td>#}
+{#</tr>#}
+{#<tr>#}
+{#	<td  style='padding:0px 0px 0px 30px;' >#}
+{#        <form action="/blog/Admin/setPicShow" method="post">#}
+{#            <label>选择我的风采展示相册：</label><br/>#}
+{#                <select name="picshow">#}
+{#                    <option value="">不选择任何相册</option>#}
+{#                    {%for tag in picshowtaglist%}#}
+{#                    <option value="{{tag.key.id}}" {%ifequal picshowtag tag.key.id%} selected="selected" {%endifequal%} >{{tag.tag}}</option>#}
+{#                    {%endfor%}#}
+{#            </select>#}
+{#            <input type="submit" value="保存设置" />#}
+{#        </form>#}
+{#	</td>#}
+{#</tr>#}
 {% endblock %}
