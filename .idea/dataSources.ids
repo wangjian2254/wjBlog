@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Django default" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="e3a4194f-b3d8-4d59-9423-cf64b7579a3d">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:/Users/wangjian2254/work/django/wjBlog/wjblogdb</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/PyCharm20/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/PyCharm20/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <table name="auth_group" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(80)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <index name="sqlite_autoindex_auth_group_1" unique="true" columns="name" />
+    </table>
+    <table name="auth_group_permissions" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="group_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="permission_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="auth_group_permissions_1e014c8f" unique="false" columns="permission_id" />
+      <index name="auth_group_permissions_425ae3c4" unique="false" columns="group_id" />
+      <index name="sqlite_autoindex_auth_group_permissions_1" unique="true" columns="group_id,permission_id" />
+    </table>
+    <table name="auth_message" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="message" sqlType="TEXT" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="auth_message_403f60f" unique="false" columns="user_id" />
+    </table>
+    <table name="auth_permission" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(50)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="content_type_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="codename" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <index name="auth_permission_1bb8f392" unique="false" columns="content_type_id" />
+      <index name="sqlite_autoindex_auth_permission_1" unique="true" columns="content_type_id,codename" />
+    </table>
+    <table name="auth_user" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="username" sqlType="VARCHAR(30)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="first_name" sqlType="VARCHAR(30)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="last_name" sqlType="VARCHAR(30)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="email" sqlType="VARCHAR(75)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="password" sqlType="VARCHAR(128)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="is_staff" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="is_active" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="is_superuser" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="last_login" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="date_joined" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <index name="sqlite_autoindex_auth_user_1" unique="true" columns="username" />
+    </table>
+    <table name="auth_user_groups" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="group_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="auth_user_groups_425ae3c4" unique="false" columns="group_id" />
+      <index name="auth_user_groups_403f60f" unique="false" columns="user_id" />
+      <index name="sqlite_autoindex_auth_user_groups_1" unique="true" columns="user_id,group_id" />
+    </table>
+    <table name="auth_user_user_permissions" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="permission_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="auth_user_user_permissions_1e014c8f" unique="false" columns="permission_id" />
+      <index name="auth_user_user_permissions_403f60f" unique="false" columns="user_id" />
+      <index name="sqlite_autoindex_auth_user_user_permissions_1" unique="true" columns="user_id,permission_id" />
+    </table>
+    <table name="blog_bloguser" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="desc" sqlType="TEXT" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="img" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_bloguser_6223029" unique="false" columns="site_id" />
+      <index name="blog_bloguser_403f60f" unique="false" columns="user_id" />
+      <index name="sqlite_autoindex_blog_bloguser_1" unique="true" columns="user_id,site_id" />
+    </table>
+    <table name="blog_guest" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="contact" sqlType="VARCHAR(40)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="type" sqlType="VARCHAR(40)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="nickname" sqlType="VARCHAR(20)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="createDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="lastLoginDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_guest_6223029" unique="false" columns="site_id" />
+      <index name="blog_guest_63026fa4" unique="false" columns="contact" />
+      <index name="sqlite_autoindex_blog_guest_1" unique="true" columns="site_id,contact,type" />
+    </table>
+    <table name="blog_keyword" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(40)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_keyword_6223029" unique="false" columns="site_id" />
+    </table>
+    <table name="blog_menu" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(20)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="index" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="fatherid_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="link" sqlType="VARCHAR(300)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="type" sqlType="VARCHAR(5)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_menu_6223029" unique="false" columns="site_id" />
+      <index name="blog_menu_1bf21245" unique="false" columns="fatherid_id" />
+    </table>
+    <table name="blog_paper" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="title_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="content" sqlType="TEXT" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="contentnotag" sqlType="TEXT" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="title_id" ref-table="blog_title" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="sqlite_autoindex_blog_paper_1" unique="true" columns="title_id" />
+    </table>
+    <table name="blog_paperimage" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="title_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="content" sqlType="TEXT" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="img" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="imgmid" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="imgsmall" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="index" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="title_id" ref-table="blog_title" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_paperimage_8a3b4cf" unique="false" columns="title_id" />
+    </table>
+    <table name="blog_replay" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="title_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="face" sqlType="VARCHAR(5)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="content" sqlType="TEXT" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="paperid" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="createDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="fatherid_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="isAdmin" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="guest_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="admin_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="isPub" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id,admin_id,guest_id,title_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id,id,id,id" />
+      <index name="blog_replay_6223029" unique="false" columns="site_id" />
+      <index name="blog_replay_e972820" unique="false" columns="admin_id" />
+      <index name="blog_replay_659c068d" unique="false" columns="guest_id" />
+      <index name="blog_replay_1bf21245" unique="false" columns="fatherid_id" />
+      <index name="blog_replay_8a3b4cf" unique="false" columns="title_id" />
+    </table>
+    <table name="blog_subscribemail" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="email" sqlType="VARCHAR(40)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_subscribemail_6223029" unique="false" columns="site_id" />
+    </table>
+    <table name="blog_templates" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(50)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="desc" sqlType="VARCHAR(300)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="templatename" sqlType="VARCHAR(20)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+    </table>
+    <table name="blog_title" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="title" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="menu_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="desc" sqlType="VARCHAR(500)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="type" sqlType="VARCHAR(5)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="author_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="showNum" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="fromPaper_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="fromurl" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="createDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="updateDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="releaseDate" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="isPub" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="staticurl" sqlType="VARCHAR(400)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id,author_id,menu_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id,id,id" />
+      <index name="blog_title_6223029" unique="false" columns="site_id" />
+      <index name="blog_title_729028f9" unique="false" columns="fromPaper_id" />
+      <index name="blog_title_337b96ff" unique="false" columns="author_id" />
+      <index name="blog_title_143efa3" unique="false" columns="menu_id" />
+    </table>
+    <table name="blog_title_keywords" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="title_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="keyword_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="keyword_id" ref-table="blog_keyword" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_title_keywords_59bcbf7e" unique="false" columns="keyword_id" />
+      <index name="blog_title_keywords_8a3b4cf" unique="false" columns="title_id" />
+      <index name="sqlite_autoindex_blog_title_keywords_1" unique="true" columns="title_id,keyword_id" />
+    </table>
+    <table name="blog_websitedomain" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="domain" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="isDefault" sqlType="BOOL" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="showNum" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="site_id" ref-table="blog_websiteinfo" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_websitedomain_6223029" unique="false" columns="site_id" />
+      <index name="sqlite_autoindex_blog_websitedomain_1" unique="true" columns="domain" />
+    </table>
+    <table name="blog_websiteinfo" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(50)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="desc" sqlType="VARCHAR(500)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="keywords" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="author_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="template_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="template_id,author_id" ref-table="blog_templates" ref-schema="" ref-catalog="" ref-columns="id,id" />
+      <index name="blog_websiteinfo_1e0a3f4a" unique="false" columns="template_id" />
+      <index name="blog_websiteinfo_337b96ff" unique="false" columns="author_id" />
+    </table>
+    <table name="blog_websiteinfo_replayEMail" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="websiteinfo_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="bloguser_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="bloguser_id" ref-table="blog_bloguser" ref-schema="" ref-catalog="" ref-columns="id" />
+      <index name="blog_websiteinfo_replayEMail_2efb204f" unique="false" columns="bloguser_id" />
+      <index name="blog_websiteinfo_replayEMail_5d8dfcf0" unique="false" columns="websiteinfo_id" />
+      <index name="sqlite_autoindex_blog_websiteinfo_replayEMail_1" unique="true" columns="websiteinfo_id,bloguser_id" />
+    </table>
+    <table name="blog_ztperm" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+    </table>
+    <table name="django_admin_log" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="action_time" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="content_type_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4" />
+      <column name="object_id" sqlType="TEXT" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="object_repr" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="action_flag" sqlType="SMALLINT UNSIGNED" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="change_message" sqlType="TEXT" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <foreign-key columns="content_type_id,user_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id,id" />
+      <index name="django_admin_log_1bb8f392" unique="false" columns="content_type_id" />
+      <index name="django_admin_log_403f60f" unique="false" columns="user_id" />
+    </table>
+    <table name="django_content_type" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="name" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="app_label" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="model" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+      <index name="sqlite_autoindex_django_content_type_1" unique="true" columns="app_label,model" />
+    </table>
+    <table name="django_session" schema="" catalog="" type="TABLE">
+      <column name="session_key" sqlType="VARCHAR(40)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="session_data" sqlType="TEXT" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="expire_date" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="session_key" />
+      <index name="django_session_3da3d3d8" unique="false" columns="expire_date" />
+      <index name="sqlite_autoindex_django_session_1" unique="true" columns="session_key" />
+    </table>
+    <table name="django_site" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="domain" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="name" sqlType="VARCHAR(50)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <primary-key columns="id" />
+    </table>
+    <table name="ueditor_ueditorfile" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="filename" sqlType="VARCHAR(200)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="realfilename" sqlType="VARCHAR(400)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="title" sqlType="VARCHAR(100)" length="2000000000" precision="10" nullable="true" jdbcType="12" />
+      <column name="createTime" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="type" sqlType="VARCHAR(10)" length="2000000000" precision="10" nullable="false" jdbcType="12" />
+      <column name="site_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="user_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <column name="size" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4" />
+      <primary-key columns="id" />
+      <foreign-key columns="user_id,site_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id,id" />
+      <index name="ueditor_ueditorfile_403f60f" unique="false" columns="user_id" />
+      <index name="ueditor_ueditorfile_6223029" unique="false" columns="site_id" />
+    </table>
+  </data-source>
+</component>

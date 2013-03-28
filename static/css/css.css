@@ -158,3 +158,15 @@ word-wrap:break-word;
 .newsContent div {
 word-wrap:break-word;
 }
+
+#ads_google{
+    width: 160;
+    height: 600px;
+    top: 100px;
+    right: 0px;
+    position: fixed;
+    _position:absolute;
+    _bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop+100));
+
+}
