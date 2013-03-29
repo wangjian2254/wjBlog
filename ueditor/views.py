@@ -6,14 +6,14 @@ import random
 import urllib
 import uuid
 from django.contrib.sites.models import Site
-
+import ImageFile
 from django.template.context import RequestContext
 
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
-import ImageFile
+
 import json
 #def imageUp(request):
 #    user=request.user
@@ -69,6 +69,7 @@ def imageUp(funname,site,request):
     elif not isAllowSize(f.size,maxSize) :
         result['state']=errorInfo['SIZE']
     else:
+
         parser=ImageFile.Parser()
         for chunk in f.chunks():
             parser.feed(chunk)
