@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Android 4.2中添加解锁项 - Keep Awake,Keep Studying,Keep Moving,Keep... - 博客频道 - CSDN.NET</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="在Android 4.2中系统默认解锁是滑动到任意位置后就会解锁，如果想添加解锁内容需要修改如下代码：1.frameworks/base/core/res/res/layout/keyguard_glow_pad_view.xml -    prvandroid:targetDrawables=@array/lockscreen_targets_unlock_only-    pr" />
+<script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+<link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/yihongyuelan/rss/list" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+</head>
+<body>
+<script src="http://csdnimg.cn/pubnav/js/pub_topnav_2011.js?v=1.1" type="text/javascript"></script>
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="/yihongyuelan">Keep Awake,Keep Studying,Keep Moving,Keep...</a></h1>
+            <h2>不积跬步，无以至千里；不积小流，无以成江河；</h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="/yihongyuelan?viewmode=contents"><span><img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="/yihongyuelan?viewmode=list"><span><img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="/yihongyuelan/rss/list"><span><img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "yihongyuelan";
+    var blog_address = "http://blog.csdn.net/yihongyuelan";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8687376
+" target="_blank">
+<font color=blue>2013年7月微软MVP申请开始啦！ 
+   </font></a>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8664620" target="_blank"><font color=blue>CSDN博客移动开发排行榜 
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8699892" target="_blank"><font color=blue>参与活动送签名技术书籍 
+
+
+</font></a>
+
+<br />
+
+
+
+
+
+<a href="http://bbs.csdn.net/topics/390397409
+"target="_blank">
+<font color=red>【有奖提问】CSDN论坛第1期专家问答开始
+
+
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8717564"target="_blank">
+<font color=red>来极客头条，赢下载积分
+ </font></a>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://bbs.csdn.net/topics/390393217"target="_blank">
+<font color=red>下载频道3月领任务~赚下载分！ 
+  </font></a>
+
+
+</div><div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="/yihongyuelan/article/details/8731060">
+        Android 4.2中添加解锁项
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/yihongyuelan/article/category/844867">Android</a> 
+        </span>
+    <span class="link_postdate">2013-03-28 13:45</span>
+    <span class="link_view" title="阅读次数">109人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle('Android 4.2中添加解锁项','8731060');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:report(8731060,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+
+    
+<div id="article_content" class="article_content">
+
+<p>在Android 4.2中系统默认解锁是滑动到任意位置后就会解锁，如果想添加解锁内容需要修改如下代码：</p>
+<p>1.frameworks/base/core/res/res/layout/keyguard_glow_pad_view.xml</p>
+<p><pre name="code" class="html"> 
+-    prvandroid:targetDrawables=&quot;@array/lockscreen_targets_unlock_only&quot;
+-    prvandroid:targetDescriptions=&quot;@array/lockscreen_target_descriptions_unlock_only&quot;
++    prvandroid:targetDrawables=&quot;@array/lockscreen_targets_with_camera&quot;
++    prvandroid:targetDescriptions=&quot;@array/lockscreen_target_descriptions_with_camera&quot;
+</pre><br>
+这样在解锁时就会默认增加相机以及google搜索。</p>
+<p>2.如果想要添加自定义解锁内容，只需要按照Android原生模板进行添加或者修改即可。</p>
+
+</div>
+<div class="share_buttons" id="sharePanel"></div>
+<!--192.168.1.237-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="/yihongyuelan/article/details/8602164">Android 4.1源码编译找不到资源文件解决办法</a></li>
+</div>
+
+
+            <div id="digg" ArticleId="8731060">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt>顶</dt>
+                <dd>1</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+
+</div>
+<div id="ad_cen"></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"></div>
+<div id="comment_bar"></div>
+<div id="comment_form"></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '8731060';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js?v=1.8"></script>
+<div id="ad_bot"></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top" style="display:none;">
+<a id="d-top-a" href="#" title="回到顶部">
+<img src="http://static.blog.csdn.net/images/top.png" alt="TOP" /></a>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var d_top=$('#d-top');
+        document.onscroll=function(){
+            var scrTop=(document.body.scrollTop||document.documentElement.scrollTop);
+            if(scrTop>500){
+                d_top.show();
+            }else{
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function(){
+            scrollTo(0,0);
+            this.blur();
+            return false;
+        });
+    });
+</script>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/yihongyuelan" target="_blank">
+            <img src="http://avatar.csdn.net/7/F/F/1_yihongyuelan.jpg" title="访问我的空间" style="max-width:90%"/>
+            </a>
+            <br />
+            <span><a href="http://my.csdn.net/yihongyuelan" class="user_name" target="_blank">yihongyuelan</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="javascript:void(0);" class="letter" onclick="loginto(1)" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        </div>
+        <ul id="blog_rank">
+            <li>访问：<span>70423次</span></li>
+            <li>积分：<span>1239分</span></li>
+            <li>排名：<span>第7392名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>34篇</span></li>
+            <li>转载：<span>0篇</span></li>
+            <li>译文：<span>1篇</span></li>
+            <li>评论：<span>146条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'yihongyuelan';
+</script>
+
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/yihongyuelan/article/category/844867">Android</a><span>(30)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/yihongyuelan/article/category/923687">个人总结</a><span>(1)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list">
+        <!--归档统计-->
+        <li><a href="http://blog.csdn.net/yihongyuelan/article/month/2013/03">2013年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2013/01">2013年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/11">2012年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/10">2012年10月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/09">2012年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/07">2012年07月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/06">2012年06月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/04">2012年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/03">2012年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2012/01">2012年01月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2011/12">2011年12月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2011/11">2011年11月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2011/08">2011年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2011/07">2011年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/yihongyuelan/article/month/2010/12">2010年12月</a><span>(3)</span></li>
+        </div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="/yihongyuelan/article/details/7623578" title="Android 4.0 ICS SystemUI浅析——SystemUI启动流程">Android 4.0 ICS SystemUI浅析——SystemUI启动流程</a><span>(9072)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6963485" title="Android 2.3 SD卡挂载流程浅析(三)">Android 2.3 SD卡挂载流程浅析(三)</a><span>(5897)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6926034" title="Android 2.3 SD卡挂载流程浅析(一)">Android 2.3 SD卡挂载流程浅析(一)</a><span>(5606)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7695903" title="Android 4.0 ICS SystemUI浅析——StatusBar结构分析">Android 4.0 ICS SystemUI浅析——StatusBar结构分析</a><span>(5360)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7710584" title="Android 4.0 ICS SystemUI浅析——StatusBar加载流程分析">Android 4.0 ICS SystemUI浅析——StatusBar加载流程分析</a><span>(4101)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6930112" title="Android 2.3 SD卡挂载流程浅析(二)">Android 2.3 SD卡挂载流程浅析(二)</a><span>(3654)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6965205" title="Android 2.3 SD卡挂载流程浅析(五)">Android 2.3 SD卡挂载流程浅析(五)</a><span>(3501)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/8129086" title="Android 4.0 中由ProGuard引发的一场血案">Android 4.0 中由ProGuard引发的一场血案</a><span>(2980)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6965165" title="Android 2.3 SD卡挂载流程浅析(四)">Android 2.3 SD卡挂载流程浅析(四)</a><span>(2769)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6980538" title="Android 2.3 SD卡挂载流程浅析(六)">Android 2.3 SD卡挂载流程浅析(六)</a><span>(2727)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="/yihongyuelan/article/details/6926034" title="Android 2.3 SD卡挂载流程浅析(一)">Android 2.3 SD卡挂载流程浅析(一)</a><span>(21)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/8129086" title="Android 4.0 中由ProGuard引发的一场血案">Android 4.0 中由ProGuard引发的一场血案</a><span>(18)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6515505" title="现在感觉学习不给力啊">现在感觉学习不给力啊</a><span>(16)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7710584" title="Android 4.0 ICS SystemUI浅析——StatusBar加载流程分析">Android 4.0 ICS SystemUI浅析——StatusBar加载流程分析</a><span>(16)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7623578" title="Android 4.0 ICS SystemUI浅析——SystemUI启动流程">Android 4.0 ICS SystemUI浅析——SystemUI启动流程</a><span>(16)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6996880" title="Android 2.3 SD卡挂载流程浅析(七)">Android 2.3 SD卡挂载流程浅析(七)</a><span>(9)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7372072" title="2012-3-20 工作总结(约1年)">2012-3-20 工作总结(约1年)</a><span>(7)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/6963485" title="Android 2.3 SD卡挂载流程浅析(三)">Android 2.3 SD卡挂载流程浅析(三)</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7103754" title="Android程序运行报错&quot;Process xxxx has died&quot;原因查找">Android程序运行报错&quot;Process xxxx has died&quot;原因查找</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="/yihongyuelan/article/details/7694138" title="Android 4.0 ICS SystemUI浅析——StatusBar工作流程之时间日期设置">Android 4.0 ICS SystemUI浅析——StatusBar工作流程之时间日期设置</a><span>(4)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    </ul>
+</div>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="/yihongyuelan/article/details/7695903#comments">Android 4.0 ICS SystemUI浅析——StatusBar结构分析</a>
+    <p style="margin:0px;"><a href="/zwq1457" class="user_name">zwq1457</a>:
+楼主，状态栏高度怎么修改？？
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/7695903#comments">Android 4.0 ICS SystemUI浅析——StatusBar结构分析</a>
+    <p style="margin:0px;"><a href="/i9527" class="user_name">i9527</a>:
+看了你的文章后,重新布局了一下状态栏.有个问题想请教:安卓4.1.1,状态栏是做透明了,而且可以分等...
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/7623578#comments">Android 4.0 ICS SystemUI浅析——SystemUI启动流程</a>
+    <p style="margin:0px;"><a href="/wo4chenkewen" class="user_name">wo4chenkewen</a>:
+分析的很好，希望能加你QQ，或者你加我QQ 512840685.
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/7216188#comments">Android中程序与Service交互的方式——交互方式</a>
+    <p style="margin:0px;"><a href="/zhenggz" class="user_name">zhenggz</a>:
+好东西，说明比较透切，谢谢楼主
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/7694138#comments">Android 4.0 ICS SystemUI浅析——StatusBar工作流程之时间日期设置</a>
+    <p style="margin:0px;"><a href="/final_aim2" class="user_name">final_aim2</a>:
+hierarchyviewer怎么用，像framework里面有很多xml,怎么查看它到布局？楼主知...
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/6930112#comments">Android 2.3 SD卡挂载流程浅析(二)</a>
+    <p style="margin:0px;"><a href="/boychenxingxing" class="user_name">boychenxingxing</a>:
+真心感谢你的分享！！！
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/6963485#comments">Android 2.3 SD卡挂载流程浅析(三)</a>
+    <p style="margin:0px;"><a href="/johnlo" class="user_name">johnlo</a>:
+有几个小问题请教楼主我修改了init.rc和vold.fstab和external_storage把...
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/8129086#comments">Android 4.0 中由ProGuard引发的一场血案</a>
+    <p style="margin:0px;"><a href="/chiboo" class="user_name">chiboo</a>:
+博主v5啊。对android编译流程很精通了。
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/8555953#comments">Android 4.1 设置默认开机动态壁纸</a>
+    <p style="margin:0px;"><a href="/chiboo" class="user_name">chiboo</a>:
+如果默认设置静态壁纸呢？
+    </p>
+    </li>
+    <li>
+    <a href="/yihongyuelan/article/details/7710584#comments">Android 4.0 ICS SystemUI浅析——StatusBar加载流程分析</a>
+    <p style="margin:0px;"><a href="/weiwei11bingbing" class="user_name">weiwei11bingbing</a>:
+亲爱的楼主。帮我分析个问题，之前没做过托盘，现在比较急。数据业务关闭时，不显示运营商的图标，数据业务...
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js?v=1.1"></script>
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=990649"></script>
+
+<script type="text/javascript" src="http://static.csdn.net/rabbit/note/js/publib_footer.js"></script>
+
+<script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+
+
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+</div>
+</body>
+</html>

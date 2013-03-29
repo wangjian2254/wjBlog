@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>iOS 6 编程 - 自动布局（Auto Layout）系列文章 - EntLib - 博客园</title>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/blog/css/common.css?id=20130323"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="http://common.cnblogs.com/Skins/sea/style.css?id=20130323"/>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/blog/css/common2.css"/>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/css/shStyle.css"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/entlibforum/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/entlibforum/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/entlibforum/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">
+var currentBlogApp = 'entlibforum';
+</script>
+<script src="http://common.cnblogs.com/blog/script/common.js?id=20130323" type="text/javascript"></script> 
+<script src="http://common.cnblogs.com/script/json2.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://common.cnblogs.com/script/syntaxHighlighter.js"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/entlibforum/">基于ASP.NET/C#开源电子商务系统</a><br>
+		开源ASP.NET/C#/SQL Server的开源电子商务系统（网店系统）免费下载。<script type="text/javascript"><!--
+google_ad_client = "pub-7768717352490832";
+google_alternate_color = "014E82";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel = "";
+google_color_border = "014E82";
+google_color_bg = "014E82";
+google_color_link = "014E82";
+google_color_text = "FFFFCC";
+google_color_url = "FFFFCC";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu" >
+	
+		<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/entlibforum/">首页</a> &nbsp;
+<a href="http://q.cnblogs.com" class="menu">博问</a> &nbsp;
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> &nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/entlibforum/admin/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/EntLib">联系</a> &nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/entlibforum/rss">订阅</a><a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/entlibforum/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>&nbsp;
+<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/entlibforum/admin/EditPosts.aspx">管理</a>
+</div>
+		<DIV id="mystats">
+<!--done-->
+随笔-151&nbsp;
+评论-544&nbsp;
+文章-0&nbsp;
+trackbacks-12
+</DIV>
+	
+</div>
+<div id="centercontent" >
+	
+	
+<div class = "post">
+	<h1 class = "postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/entlibforum/archive/2012/10/16/2725411.html">iOS 6 编程 - 自动布局（Auto Layout）系列文章</a></h1>
+	<div id="cnblogs_post_body"><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; "><img src="http://images.cnblogs.com/cnblogs_com/entlibforum/iOS/hero.jpg" width="273" height="273" alt="" align="right" />iOS 6 在应用程序用户界面开发中，引入了自动布局（Auto Layout）概念。自动布局使用约束（Constraint）在用户界面描述各类视图的位置、行为和关系。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">在Xcode 4.5中，我们可以使用Interface Builder，或者可视化格式语言（Visual Format Language），或者标准的SDK API调用（NSLayoutConstraint类）等等三种方式来创建约束（Constraint）。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">Auto Layout用这些Constraints 来对所有的视图进行一些计算，设置视图的位置和尺寸。不再需要设置视图的frame属性，也就是完全基于针对视图或元素所设置的Constraints来布局界面的视图元素。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">使用Xcode 4.5 创建App时，Auto Layout功能在所有nib或Storyboard 文件中，默认是enable（开启的）。<a href="http://www.entlib.net/?p=2411" target="_blank" style="background-color: transparent; border: 0px; margin: 0px; padding: 0px; vertical-align: baseline; color: #743399; background-position: initial initial; background-repeat: initial initial; ">具体设置的地方，可以查看之前的文章</a>。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">在iOS 6 引入自动布局之前，我们使用springs and struts模式来设计可旋转和调整大小的用户界面。简单归纳和回顾一下，主要有三种方法：</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; "><strong>1. 自动旋转和自动调整大小</strong></p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">通过在Size Inspector面板中，设置各类视图的Autosizing属性，无需编写代码，但这种仅适用于UI比较简单的应用。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; "><strong>2. 调整视图框架（frame属性）</strong></p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">每一个UI 元素在屏幕上都由一个矩形区域定义，这个矩形区域就是UI 元素的frame属性。可以使用C语言函数CGRectMake(x,y,width,height) 来重新定义视图的frame属性。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">如果UI元素比较多，这个需要跟踪每一个UI元素的大小和位置，代码设计起来比较麻烦。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; "><strong>3. 重新设计不同的视图-横向和纵向视图</strong></p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">在每一个场景中分别定义横向和纵向2个视图，这个每一个视图都需要定义独立的输出口。虽然2个视图和同一个视图控制ViewController关联，但是不能共享输出口，在视图控制器中需要交互的UI元素数量会变成 2 倍。当然优点是，不同的视图完全独立开了，避免相互影响。</p><p style="background-color: #ffffff; border: 0px; margin: 0px 0px 10px; padding: 0px; vertical-align: baseline; color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">上述三种方式在开发过程中，都存在一些缺点。iOS 6 引入的自动布局（Auto Layout）正是为了改进这个不足之处。个人觉得也可以适应之后不断增多的不同尺寸的iPad、iPhone设备。</p><p>&nbsp;</p><p><strong>iOS 6 编程 -- 自动布局（Auto Layout）相关文章：</strong></p><a title="链向 iOS 6编程(15)-创建自动布局（Auto Layout）简单应用 的固定链接" rel="bookmark" href="http://www.entlib.net/?p=2596" target="_blank" style="background-color: #ffffff; border: 0px; margin: 0px; padding: 0px; vertical-align: baseline; color: #743399; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">iOS 6编程(15)-创建自动布局（Auto Layout）简单应用</a><br style="color: #333333; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; background-color: #ffffff; " /><p><a title="链向 iOS 6编程(16)-Interface Builder自动布局功能 的固定链接" rel="bookmark" href="http://www.entlib.net/?p=2606" target="_blank" style="background-color: #ffffff; border: 0px; margin: 0px; padding: 0px; vertical-align: baseline; color: #743399; font-family: 微软雅黑, 宋体, Georgia, 'Bitstream Charter', serif; line-height: 24px; ">iOS 6编程(16)-Interface Builder自动布局功能</a></p><p><div><a href="http://www.entlib.net/?p=2623" target="_blank">iOS 6编程(17)-自动布局深入演示</a></div><p>&nbsp;</p><p><img src="http://images.cnblogs.com/cnblogs_com/entlibforum/iOS/chapter30-auto-layout-UIImageView.jpg" width="600" height="558" alt="" />&nbsp;</p></p><p><br /></p><p>未完待续！！&nbsp;</p></div><div id="MySignature"></div>
+<script type="text/javascript">
+var isLogined = false;
+var cb_blogId = 37251;
+var cb_entryId = 2725411;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "f83a420b-63cf-dd11-9e4d-001cf0cd104b";
+var cb_entryCreatedDate = '2012/10/16 9:20:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+<script type="text/javascript">
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {             
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</script>
+	<div class = "postDesc">posted on <span id="post-date">2012-10-16 09:20</span> <a href='http://www.cnblogs.com/entlibforum/'>EntLib</a> 阅读(1536) 评论(<span id="post-comment-count">0</span>)  <a href ="http://www.cnblogs.com/entlibforum/admin/EditPosts.aspx?postid=2725411" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2725411);return false;">收藏</a></div>
+</div>
+<img src ="http://www.cnblogs.com/entlibforum/aggbug/2725411.html?type=1&amp;webview=1" width="1" height="1" alt=""/>
+
+<div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.loadComments();</script>
+<div id="comment_form" class="commentform">
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+
+<script type="text/javascript">
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</script>
+
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+</div>
+
+
+
+
+
+</div>
+<div id="leftcontent">
+	
+		<DIV id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"></div>
+</div>
+
+			<div id="blog-calendar-block" style="display:none"><div id="blog-calendar"></div>
+</div><br>
+			<div id="blog-sidecolumn"></div></DIV>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com">博客园</a>	模板提供：<a href="http://blog.hjenglish.com">沪江博客</a>
+	Copyright &copy;2013 EntLib
+</div>
+
+
+
+<script type="text/javascript" src="http://common.cnblogs.com/script/google-analytics.js"></script>
+</body>
+</html>
