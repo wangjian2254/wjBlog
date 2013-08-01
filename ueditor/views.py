@@ -6,7 +6,7 @@ import random
 import urllib
 import uuid
 from django.contrib.sites.models import Site
-import ImageFile
+# import ImageFile
 from django.template.context import RequestContext
 
 from django.shortcuts import render_to_response
@@ -70,10 +70,10 @@ def imageUp(funname,site,request):
         result['state']=errorInfo['SIZE']
     else:
 
-        parser=ImageFile.Parser()
-        for chunk in f.chunks():
-            parser.feed(chunk)
-        img=parser.close()
+        # parser=ImageFile.Parser()
+        # for chunk in f.chunks():
+        #     parser.feed(chunk)
+        # img=parser.close()
         newfilename=''
         ufile=UeditorFile()
         try:
@@ -86,7 +86,11 @@ def imageUp(funname,site,request):
             ufile.site=WebSiteInfo.objects.get(pk=site.get('id'))
             ufile.user=request.user
             ufile.save()
-            img.save(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename)
+            # img.save(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename)
+            fileatt=open(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename,'wb+')
+            for chunk in f.chunks():
+                fileatt.write(chunk)
+            fileatt.close()
         except Exception,e:
             ufile.delete()
             result['state']=errorInfo['DIR']
@@ -154,12 +158,12 @@ def getRemoteImage(funname,site,request):
             continue
         fileuri=urllib.urlopen(uri)
         if fileuri.getcode()==200 and fileuri.headers.type.find('image')!=-1:
-            parser=ImageFile.Parser()
-            for chunk in fileuri.readlines():
-                parser.feed(chunk)
-            fileuri.close()
+            # parser=ImageFile.Parser()
+            # for chunk in fileuri.readlines():
+            #     parser.feed(chunk)
+            # fileuri.close()
             size=int(fileuri.headers.dict['content-length'])
-            img=parser.close()
+            # img=parser.close()
             newfilename=''
             ufile=UeditorFile()
             try:
@@ -172,7 +176,12 @@ def getRemoteImage(funname,site,request):
                 ufile.site=WebSiteInfo.objects.get(pk=site.get('id'))
                 ufile.user=request.user
                 ufile.save()
-                img.save(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename)
+                # img.save(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename)
+                fileatt=open(UPLOAD_ROOT+str(site.get('id'))+'/'+newfilename,'wb+')
+                for chunk in fileuri.readlines():
+                    fileatt.write(chunk)
+                fileatt.close()
+                fileuri.close()
             except Exception,e:
                 ufile.delete()
                 result['state']=errorInfo['DIR']
